@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+  /* font-family: "Inter", sans-serif;
+
+  font-family: "Roboto", sans-serif;
+
+  font-family: "Alex Brush", cursive; */
+ 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+html {
+  overflow-x: hidden;
+  background-color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+*:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.container {
+  max-width: 98%;
+  height: fit-content;
+  margin: 0 auto;
+  padding-left: 1%;
+  padding-right: 1%;
+  background-color: #1B1918;
+}
+

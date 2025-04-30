@@ -1,0 +1,131 @@
+.header {
+    width: 100%;
+    height: fit-content;
+}
+
+.header-inner {
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+
+.header-inner h2 {
+    text-align: center;
+    font-size: 7px;
+    letter-spacing: 3px;
+    padding: 9px 45px;
+}
+
+.header-inner h2>a {
+    font-weight: 700;
+    border-bottom: 1px solid #fff;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 45px;
+    background: #0A0A0A;
+    flex: 1;
+}
+
+.logo {
+    width: 13%;
+    flex: 1;
+    margin-right: 37px;
+}
+
+.header-search {
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 3;
+    margin-right: 39px;
+}
+
+.header-search input {
+    flex: 3;
+    align-self: stretch;
+    height: 3.6vh;
+}
+
+.header-search button {
+    width: 6%;
+    align-self: stretch;
+    background: #7A0000;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 2;
+    gap: 0 30px;
+}
+
+.authentication>div {
+    color: #FAFAFA;
+    font-size: 9px;
+    display: flex;
+    gap: 0 18px;
+    margin-bottom: 2px;
+}
+
+.geolocation {
+    position: relative;
+}
+
+.geolocation>div {
+    color: #FAFAFA;
+    font-size: 9px;
+    display: flex;
+    gap: 0 9px;
+    margin-bottom: 2px;
+}
+
+.geolocation::before,
+.geolocation::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    width: 1px;
+    background-color: #414040;
+}
+  
+.geolocation::before {
+    left: -30px; 
+}
+  
+.geolocation::after {
+    right: -30px; 
+}
+
+.basket {
+    width: fit-content;
+}
+
+.basket>div {
+    color: #FAFAFA;
+    font-size: 9px;
+    margin-bottom: 2px;
+}
+
+.header-bot {
+    
+    height: 60px;
+}
+
+.header-bot-item {
+    padding: 6px 45px 11px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 40px;
+    border-bottom: 1px solid #101010;
+}

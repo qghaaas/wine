@@ -1,0 +1,50 @@
+.newsletter {
+    width: 100%;
+    height: fit-content;
+}
+
+.newsletter-inner {
+    width: 100%;
+}
+
+.newsletter-offers {
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 30.5vh;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.newsletter-backimg {
+    background-image: url('./img/newsletterimg.png');
+    width: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-left: auto;
+    box-shadow: -5px 0px 10px 0px #00000026;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.newsletter-offers-text {
+    width: 46.5%;
+    display: flex;
+    flex-direction: column;
+    background: #0A0A0A;
+    box-shadow: 0px 5px 30px 0px;
+    clip-path: polygon(0 0, 100% 0, 87% 100%, 0 100%);
+    font-family: "Inter", sans-serif;
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: 0;
+}
+
+.newsletter-form{
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+}
