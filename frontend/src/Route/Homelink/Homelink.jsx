@@ -4,6 +4,7 @@ import Offersbot from "../../Home/Offersbot/Offersbot"
 import Assortment from "../../Home/Assortment/Assortment"
 import Сonsultation from "../../Home/Сonsultation/Сonsultation"
 import Newsletter from "../../Home/Newsletter/Newsletter"
+import Footer from "../../Home/Footer/Footer"
 
 
 export default function Homelink() {
@@ -15,6 +16,7 @@ export default function Homelink() {
             <Assortment />
             <Сonsultation />
             <Newsletter/>
+            <Footer/>
         </>
     )
 }

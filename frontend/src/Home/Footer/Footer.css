@@ -1,0 +1,44 @@
+.footer {
+    width: 100%;
+    height: fit-content;
+}
+
+.footer-inner {
+    width: 100%;
+    padding: 67px 0 0 45px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.footer-nav-content{
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.footer-nav-shop1 {
+    margin-right: 259px;
+}
+
+.footer-nav-shop2 {
+    margin-right: 202px;
+}
+
+.footer-nav-thewines {
+    margin-right: 172px;
+}
+
+.footer-nav h2{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.footer-bot{
+    padding-bottom: 22px;
+}
+
+.gtyh{
+ margin-right: 259px;
+}

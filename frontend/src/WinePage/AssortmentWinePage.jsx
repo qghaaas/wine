@@ -1,9 +1,10 @@
-import '../../main.css'
-import './Assortment.css'
+import '../main.css'
+import '../Home/Assortment/Assortment.css'
+import './AssortmentWinePage.css'
 import React, { useState, useEffect } from 'react';
-import arrowShow from './img/arrowShow.svg'
-import sortproductArr from './img/sortproductArr.svg'
-import ellipse from './img/ellipse.svg'
+import arrowShow from '../Home/Assortment/img/arrowShow.svg'
+import sortproductArr from '../Home/Assortment/img/sortproductArr.svg'
+import ellipse from '../Home/Assortment/img/ellipse.svg'
 
 
 
@@ -51,7 +52,7 @@ export default function Assortment() {
                 <div className="container">
                     <div className="assortment-inner">
                         <aside className='leftbar-assortment'>
-                            {/* Форма цвета */}
+                           <h2 className='aside-title'>Red Wine</h2>
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цвет</legend>

@@ -54,8 +54,7 @@ button {
   max-width: 98%;
   height: fit-content;
   margin: 0 auto;
-  padding-left: 1%;
-  padding-right: 1%;
+  padding: 0 auto;
   background-color: #1B1918;
 }
 
