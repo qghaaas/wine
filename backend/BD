@@ -1,0 +1,63 @@
+create table wine_assortment (
+    id SERIAL primary key,
+    wine_name VARCHAR(100) not null,
+    wine_year_volume VARCHAR(20) not null,
+    price DECIMAL(10, 2) not null,
+    country_manufacturer VARCHAR(150) not null,
+    region VARCHAR(100),
+    color VARCHAR(20) not null,
+    sweetness VARCHAR(20) not null,
+    classification VARCHAR(100),
+    grape_varieties VARCHAR(255),
+    wine_image_path VARCHAR(255), 
+    flag_image_path VARCHAR(255),  
+    created_at TIMESTAMP default CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP default CURRENT_TIMESTAMP
+);
+
+INSERT INTO wine_assortment (
+    wine_name, 
+    wine_year_volume, 
+    price, 
+    country_manufacturer, 
+    region,
+    color,
+    sweetness,
+    classification,
+    grape_varieties,
+    wine_image_path, 
+    flag_image_path
+) VALUES (
+    'L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'Белое', 'Полусухое', 'AOC', 'Каберне Совиньон', '/src/Home/Assortment/img/product.png', '/src/Home/Assortment/img/flag.svg');
+
+create table whiskey_assortment (
+    id SERIAL primary key,
+    whiskey_name VARCHAR(100) not null,
+    whiskey_year_volume VARCHAR(20) not null,
+    price DECIMAL(10, 2) not null,
+    country_manufacturer VARCHAR(150) not null,
+    region VARCHAR(100),
+    classification VARCHAR(100),
+    whiskey_image_path VARCHAR(255), 
+    flag_image_path VARCHAR(255),  
+    created_at TIMESTAMP default CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP default CURRENT_TIMESTAMP
+);
+
+INSERT INTO whiskey_assortment (
+    whiskey_name, 
+    whiskey_year_volume, 
+    price, 
+    country_manufacturer, 
+    region,
+    classification,
+    whiskey_image_path, 
+    flag_image_path
+) VALUES 
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey1.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey2.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey3.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey4.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey2.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey5.png', '/src/Home/Assortment/img/flag.svg'),
+('L’ERMITE HERMITAGE','2009/0.75', 90000.00, 'Франция/M.CHAPOUTIER', 'Бордо', 'AOC', '/src/WhiskeyPage/img/whiskey6.png', '/src/Home/Assortment/img/flag.svg');

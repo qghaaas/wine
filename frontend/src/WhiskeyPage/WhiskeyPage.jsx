@@ -1,18 +1,16 @@
-import '../../main.css'
-import './AssortmentWinePage.css'
+import '../main.css'
 import React, { useState, useEffect } from 'react';
-import arrowShow from '../../Home/Assortment/img/arrowShow.svg'
-import sortproductArr from '../../Home/Assortment/img/sortproductArr.svg'
-import ellipse from '../../Home/Assortment/img/ellipse.svg'
+import arrowShow from '../Home/Assortment/img/arrowShow.svg'
+import sortproductArr from '../Home/Assortment/img/sortproductArr.svg'
+import ellipse from '../Home/Assortment/img/ellipse.svg'
+import whiskey1 from './img/whiskey1.img'
 
 
-
-export default function Assortment() {
-    const [wines, setWines] = useState([]);
+export default function WhiskeyPage() {
+    const [whiskey, setwhiskey] = useState([]);
     const [loading, setLoading] = useState(true);
     const [openForms, setOpenForms] = useState({
         color: true,
-        sweetness: true,
         price: true,
         country: false,
         region: false,
@@ -21,11 +19,11 @@ export default function Assortment() {
     });
 
     useEffect(() => {
-        const fetchWines = async () => {
+        const fetchwhiskey = async () => {
             try {
-                const response = await fetch('http://localhost:3010/api/wines');
+                const response = await fetch('http://localhost:3010/api/whiskey');
                 const data = await response.json();
-                setWines(data);
+                setwhiskey(data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching wines:', error);
@@ -33,7 +31,7 @@ export default function Assortment() {
             }
         };
 
-        fetchWines();
+        fetchwhiskey();
     }, []);
 
     // Функция для переключения состояния формы
@@ -51,130 +49,8 @@ export default function Assortment() {
                 <div className="container">
                     <div className="assortment-inner Wine-assortment-inner">
                         <aside className='leftbar-assortment'>
-                           <h2 className='aside-title'>Red Wine</h2>
-                            <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
-                                <div className='assortment-form-title'>
-                                    <legend>Цвет</legend>
-                                    <button onClick={(e) => {
-                                        e.preventDefault();
-                                        toggleForm('color');
-                                    }}>
-                                        {openForms.color ? '-' : '+'}
-                                    </button>
-                                </div>
-
-                                {openForms.color && (
-                                    <>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='white' />
-                                            <label htmlFor="white">
-                                                <div className="checkbox-box"></div>
-                                                Белое
-                                            </label>
-                                            <span>33</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="red" />
-                                            <label htmlFor="red">
-                                                <div className="checkbox-box"></div>
-                                                Красное
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="pink" />
-                                            <label htmlFor="pink">
-                                                Розовое
-                                                <div className="checkbox-box"></div>
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="other" />
-                                            <label htmlFor="other">
-                                                Прочее
-                                                <div className="checkbox-box"></div>
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                    </>
-                                )}
-                            </form>
-
-                            {/* Форма сладости */}
-                            <form action="" className={`assortment-form ${openForms.sweetness ? 'open' : ''}`}>
-                                <div className='assortment-form-title'>
-                                    <legend>Сладость</legend>
-                                    <button onClick={(e) => {
-                                        e.preventDefault();
-                                        toggleForm('sweetness');
-                                    }}>
-                                        {openForms.sweetness ? '-' : '+'}
-                                    </button>
-                                </div>
-
-                                {openForms.sweetness && (
-                                    <>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Brut' />
-                                            <label htmlFor="Brut">
-                                                <div className="checkbox-box"></div>
-                                                Брют
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Dessert' />
-                                            <label htmlFor="Dessert">
-                                                <div className="checkbox-box"></div>
-                                                Десертное
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Mounted' />
-                                            <label htmlFor="Mounted">
-                                                <div className="checkbox-box"></div>
-                                                Крепленное
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Non-Dosage' />
-                                            <label htmlFor="Non-Dosage">
-                                                <div className="checkbox-box"></div>
-                                                Нон-Дозаж
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Semi-sweet' />
-                                            <label htmlFor="Semi-sweet">
-                                                <div className="checkbox-box"></div>
-                                                Полусладкое
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Semi-dry' />
-                                            <label htmlFor="Semi-dry">
-                                                <div className="checkbox-box"></div>
-                                                Полусухое
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                        <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Dry' />
-                                            <label htmlFor="Dry">
-                                                <div className="checkbox-box"></div>
-                                                Сухое
-                                            </label>
-                                            <span>3</span>
-                                        </div>
-                                    </>
-                                )}
-                            </form>
-
+                           <h2 className='aside-title'>Whiskey</h2>
+                        
                             {/* Форма цены */}
                             <form action="" className={`assortment-form ${openForms.price ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
@@ -304,27 +180,27 @@ export default function Assortment() {
 
 
                             <div className='product-card-container'>
-                                {wines.map((wine) => {
-                                    const [year, volume] = wine.wine_year_volume.split('/');
-                                    const [country, manufacturer] = wine.country_manufacturer.split('/');
+                                {whiskey.map((whiskey) => {
+                                    const [year, volume] = whiskey.whiskey_year_volume.split('/');
+                                    const [country, manufacturer] = whiskey.country_manufacturer.split('/');
 
                                     return (
-                                        <div className='product-card' key={wine.id}>
+                                        <div className='product-card' key={whiskey.id}>
                                             <div className='product-card-top'>
-                                                <img src={wine.wine_image_path || product} alt={wine.wine_name} />
+                                                <img src={whiskey.whiskey_image_path || product} alt={whiskey.whiskey_name} />
                                             </div>
                                             <div className='product-card-bot'>
-                                                <h3>{wine.wine_name}</h3>
+                                                <h3>{whiskey.whiskey_name}</h3>
                                                 <div className='product-card-bot-info'>
                                                     <span>{year}/{volume} л</span>
                                                     <div className='product-card-bot-country'>
-                                                        <img src={wine.flag_image_path || flag} alt={country} />
+                                                        <img src={whiskey.flag_image_path || flag} alt={country} />
                                                         <p>{country}/{manufacturer}</p>
                                                     </div>
                                                     <div className='product-card-bot-bot'>
                                                         <div>
                                                             <span>ЦЕНА ЗА 1 ШТ</span>
-                                                            <p>{new Intl.NumberFormat('ru-RU').format(wine.price)} р</p>
+                                                            <p>{new Intl.NumberFormat('ru-RU').format(whiskey.price)} р</p>
                                                         </div>
                                                         <button>В КОРЗИНУ</button>
                                                     </div>

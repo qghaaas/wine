@@ -51,7 +51,7 @@ export default function Header() {
                             <ul className='header-bot-item'>
                                 <li><Link to="/Wine">Вино</Link></li>
                                 <li><Link to="#">Игристое</Link></li>
-                                <li><Link to="#">Виски</Link></li>
+                                <li><Link to="/Whiskey">Виски</Link></li>
                                 <li><Link to="#">Коньяк</Link></li>
                                 <li><Link to="#">Арманьяк</Link></li>
                                 <li><Link to="#">Ром</Link></li>
