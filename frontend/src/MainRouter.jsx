@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
-import Homelink from "./Route/Homelink/Homelink";
+import Homelink from "./Route/Homelink";
 import WinePagelink from "./Route/WinePagelink";
 
 

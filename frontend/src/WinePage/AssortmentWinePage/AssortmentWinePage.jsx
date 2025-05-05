@@ -1,10 +1,9 @@
-import '../main.css'
-import '../Home/Assortment/Assortment.css'
+import '../../main.css'
 import './AssortmentWinePage.css'
 import React, { useState, useEffect } from 'react';
-import arrowShow from '../Home/Assortment/img/arrowShow.svg'
-import sortproductArr from '../Home/Assortment/img/sortproductArr.svg'
-import ellipse from '../Home/Assortment/img/ellipse.svg'
+import arrowShow from '../../Home/Assortment/img/arrowShow.svg'
+import sortproductArr from '../../Home/Assortment/img/sortproductArr.svg'
+import ellipse from '../../Home/Assortment/img/ellipse.svg'
 
 
 

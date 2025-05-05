@@ -26,7 +26,6 @@ app.get('/api/wines', async (req, res) => {
   }
 });
 
-// Получение конкретного вина по ID
 app.get('/api/wines/:id', async (req, res) => {
   const { id } = req.params;
   try {

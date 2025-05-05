@@ -14,7 +14,7 @@ export default function Header() {
                     <div className="header-inner">
                         <h2>ДОСТУПНА СРОЧНАЯ ДОСТАВКА ПО МОСКВЕ - <Link to="#">ДЕТАЛЬНЫЕ УСЛОВИЯ</Link></h2>
                         <nav className='header-top'>
-                            <img className='logo' src={logo} alt="" />
+                            <Link className='logo' to="/"><img src={logo} alt="" /></Link>
                             <div className='header-search'>
                                 <input type="text" />
                                 <button>

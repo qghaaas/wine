@@ -36,7 +36,6 @@ export default function Assortment() {
         fetchWines();
     }, []);
 
-    // Функция для переключения состояния формы
     const toggleForm = (formName) => {
         setOpenForms(prev => ({
             ...prev,
@@ -51,7 +50,7 @@ export default function Assortment() {
                 <div className="container">
                     <div className="assortment-inner">
                         <aside className='leftbar-assortment'>
-                            {/* Форма цвета */}
+                          
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цвет</legend>
@@ -101,7 +100,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            {/* Форма сладости */}
+                        
                             <form action="" className={`assortment-form ${openForms.sweetness ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сладость</legend>
@@ -175,7 +174,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            {/* Форма цены */}
+                           
                             <form action="" className={`assortment-form ${openForms.price ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цена</legend>
@@ -198,7 +197,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            {/* Форма страны */}
+                            
                             <form action="" className={`assortment-form ${openForms.country ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Страна</legend>
@@ -211,12 +210,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.country && (
                                     <div>
-                                        {/* Добавьте содержимое для формы страны здесь */}
+                                        
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма региона */}
+                            
                             <form action="" className={`assortment-form ${openForms.region ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Регион</legend>
@@ -229,12 +228,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.region && (
                                     <div>
-                                        {/* Добавьте содержимое для формы региона здесь */}
+                                        
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма классификации */}
+                           
                             <form action="" className={`assortment-form ${openForms.classification ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Классификация</legend>
@@ -247,12 +246,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.classification && (
                                     <div>
-                                        {/* Добавьте содержимое для формы классификации здесь */}
+                                        
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма сорта винограда */}
+                          
                             <form action="" className={`assortment-form ${openForms.grape ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сорт Винограда</legend>
@@ -265,7 +264,7 @@ export default function Assortment() {
                                 </div>
                                 {openForms.grape && (
                                     <div>
-                                        {/* Добавьте содержимое для формы сорта винограда здесь */}
+                                       
                                     </div>
                                 )}
                             </form>
