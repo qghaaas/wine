@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from '../Home/Assortment/img/arrowShow.svg'
 import sortproductArr from '../Home/Assortment/img/sortproductArr.svg'
 import ellipse from '../Home/Assortment/img/ellipse.svg'
-import whiskey1 from './img/whiskey1.img'
+import './WhiskeyPage.css'
 
 
 export default function WhiskeyPage() {
@@ -186,7 +186,7 @@ export default function WhiskeyPage() {
 
                                     return (
                                         <div className='product-card' key={whiskey.id}>
-                                            <div className='product-card-top'>
+                                            <div className='product-card-top whiskey-product-card-top'>
                                                 <img src={whiskey.whiskey_image_path || product} alt={whiskey.whiskey_name} />
                                             </div>
                                             <div className='product-card-bot'>

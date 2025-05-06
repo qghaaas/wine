@@ -1,0 +1,8 @@
+.whiskey-product-card-top::after{
+    display: none;
+}
+
+.whiskey-product-card-top>img{
+    width: 50%;
+    bottom: 33          px;
+}
