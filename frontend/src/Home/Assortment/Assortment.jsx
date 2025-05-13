@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from './img/arrowShow.svg'
 import sortproductArr from './img/sortproductArr.svg'
 import ellipse from './img/ellipse.svg'
-
+import { Link } from 'react-router-dom';
 
 
 export default function Assortment() {
@@ -50,7 +50,7 @@ export default function Assortment() {
                 <div className="container">
                     <div className="assortment-inner">
                         <aside className='leftbar-assortment'>
-                          
+
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цвет</legend>
@@ -100,7 +100,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                        
+
                             <form action="" className={`assortment-form ${openForms.sweetness ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сладость</legend>
@@ -174,7 +174,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                           
+
                             <form action="" className={`assortment-form ${openForms.price ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цена</legend>
@@ -197,7 +197,7 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            
+
                             <form action="" className={`assortment-form ${openForms.country ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Страна</legend>
@@ -210,12 +210,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.country && (
                                     <div>
-                                        
+
                                     </div>
                                 )}
                             </form>
 
-                            
+
                             <form action="" className={`assortment-form ${openForms.region ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Регион</legend>
@@ -228,12 +228,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.region && (
                                     <div>
-                                        
+
                                     </div>
                                 )}
                             </form>
 
-                           
+
                             <form action="" className={`assortment-form ${openForms.classification ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Классификация</legend>
@@ -246,12 +246,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.classification && (
                                     <div>
-                                        
+
                                     </div>
                                 )}
                             </form>
 
-                          
+
                             <form action="" className={`assortment-form ${openForms.grape ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сорт Винограда</legend>
@@ -264,7 +264,7 @@ export default function Assortment() {
                                 </div>
                                 {openForms.grape && (
                                     <div>
-                                       
+
                                     </div>
                                 )}
                             </form>
@@ -309,9 +309,11 @@ export default function Assortment() {
 
                                     return (
                                         <div className='product-card' key={wine.id}>
-                                            <div className='product-card-top'>
-                                                <img src={wine.wine_image_path || product} alt={wine.wine_name} />
-                                            </div>
+                                            <Link to="/Product-Wine">
+                                                <div className='product-card-top'>
+                                                    <img src={wine.wine_image_path || product} alt={wine.wine_name} />
+                                                </div>
+                                            </Link>
                                             <div className='product-card-bot'>
                                                 <h3>{wine.wine_name}</h3>
                                                 <div className='product-card-bot-info'>

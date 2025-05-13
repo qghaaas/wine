@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from '../../Home/Assortment/img/arrowShow.svg'
 import sortproductArr from '../../Home/Assortment/img/sortproductArr.svg'
 import ellipse from '../../Home/Assortment/img/ellipse.svg'
-
+import { Link } from 'react-router-dom';
 
 
 export default function Assortment() {
@@ -36,7 +36,6 @@ export default function Assortment() {
         fetchWines();
     }, []);
 
-    // Функция для переключения состояния формы
     const toggleForm = (formName) => {
         setOpenForms(prev => ({
             ...prev,
@@ -51,7 +50,7 @@ export default function Assortment() {
                 <div className="container">
                     <div className="assortment-inner Wine-assortment-inner">
                         <aside className='leftbar-assortment'>
-                           <h2 className='aside-title'>Red Wine</h2>
+                            <h2 className='aside-title'>Red Wine</h2>
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цвет</legend>
@@ -101,7 +100,6 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            {/* Форма сладости */}
                             <form action="" className={`assortment-form ${openForms.sweetness ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сладость</legend>
@@ -310,9 +308,11 @@ export default function Assortment() {
 
                                     return (
                                         <div className='product-card' key={wine.id}>
-                                            <div className='product-card-top'>
-                                                <img src={wine.wine_image_path || product} alt={wine.wine_name} />
-                                            </div>
+                                            <Link to="/Product-Wine">
+                                                <div className='product-card-top'>
+                                                    <img src={wine.wine_image_path || product} alt={wine.wine_name} />
+                                                </div>
+                                            </Link>
                                             <div className='product-card-bot'>
                                                 <h3>{wine.wine_name}</h3>
                                                 <div className='product-card-bot-info'>

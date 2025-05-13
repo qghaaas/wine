@@ -1,7 +1,7 @@
-import '../main.css'
+import '../../main.css'
 import './Productinfo.css'
-
-
+import productpagephoto from './img/productpagephoto.png'
+import flag from '../../Home/Assortment/img/flag.svg'
 
 export default function Productinfo() {
     return (
@@ -10,17 +10,30 @@ export default function Productinfo() {
                 <div className="container">
                     <div className="productinfo-inner">
                         <div className="productinfo-photo">
-
+                            <img src={productpagephoto} alt="" />
                         </div>
 
                         <div className="productinfo-info-content">
                             <div className="productinfo-info-content-top">
                                 <div className="productinfo-info-content-top-item">
-                                    <h2></h2>
-                                    <span></span>
+                                    <div className='productinfo-info-content-top-item-nameprice'>
+                                        <h2>CHATEAU <br />
+                                            HAUT-BRION</h2>
+                                        <div className='productinfo-info-content-top-item-nameprice-price'>
+                                            <span>цена за 1 шт</span>
+                                            <p>90 000 Р</p>
+                                        </div>
+                                    </div>
                                     <div className='productinfo-info-content-top-flag'>
-                                        <img src="" alt="" />
-                                        <p></p>
+                                        <div>
+                                            <p>2009/0.75 л</p>
+                                            <img src={flag} alt="" />
+                                            <span>франция/HAUT-BRION</span>
+                                        </div>
+                                        <div className='add-basket'>
+                                            <span>1</span>
+                                            <button>В КОРЗИНУ</button>
+                                        </div>
                                     </div>
                                 </div>
 

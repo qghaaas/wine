@@ -3,6 +3,9 @@ import { HashRouter } from "react-router-dom";
 import Homelink from "./Route/Homelink";
 import WinePagelink from "./Route/WinePagelink";
 import WhiskeyPagelink from "./Route/WhiskeyPagelink";
+import ProductPagelink from "./Route/ProductPagelink";
+
+
 
 export default function MainRouter() {
     return (
@@ -14,6 +17,7 @@ export default function MainRouter() {
                     <Route path="/Home" element={<Homelink />}/>
                     <Route path="/Wine" element={<WinePagelink />}/>
                     <Route path="/Whiskey" element={<WhiskeyPagelink />}/>
+                    <Route path="/Product-Wine" element={<ProductPagelink />}/>
                     
                 </Routes>
             </HashRouter>

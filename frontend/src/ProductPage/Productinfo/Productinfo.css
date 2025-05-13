@@ -1,0 +1,99 @@
+.productinfo {
+    width: 100%;
+    height: fit-content;
+    font-family: "Inter", sans-serif;
+    color: #fff;
+}
+
+.productinfo-inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 124px 45px 0 45px;
+}
+
+.productinfo-photo {
+    width: 25%;
+    height: 43vh;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.productinfo-photo img {
+    position: absolute;
+    bottom: 13px;
+    width: 31.5%;
+}
+
+.productinfo-info-content {
+    width: 60%;
+}
+
+.productinfo-info-content-top-item-nameprice {
+    display: flex;
+    gap: 0 200px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.productinfo-info-content-top-item-nameprice h2 {
+    font-size: 28px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    border-bottom: 0.89px solid rgba(255, 255, 255, 0.25);
+    padding-bottom: 22px;
+    width: 30%;
+}
+
+.productinfo-info-content-top-item-nameprice-price span {
+    font-size: 9px;
+    line-height: 36px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 35%;
+}
+
+.productinfo-info-content-top-item-nameprice-price p {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 10px;
+    text-transform: uppercase
+}
+
+.productinfo-info-content-top-flag {
+    display: flex;
+    gap: 0 260px;
+}
+
+.add-basket {
+    width: 26%;
+    height: 5.1vh;
+    display: flex;
+    font-family: "Inter", sans-serif;
+}
+
+.add-basket span {
+    background: #fff;
+    color: #939393;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 36px;
+    width: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-basket button {
+    background: #7A0000;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 5px;
+    width: 73%;
+}
