@@ -12,6 +12,7 @@
     gap: 0 20%;
     align-items: flex-start;
     padding: 124px 45px 0 45px;
+    padding-bottom: 125px;
 }
 
 .productinfo-photo {
@@ -21,8 +22,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     margin-bottom: 20px;
+    position: sticky;
+    top: 100px;
+    z-index: 10;
 }
 
 .productinfo-photo img {
@@ -33,6 +36,7 @@
 
 .productinfo-info-content {
     width: 45%;
+    height: fit-content;
 }
 
 .productinfo-info-content-top-item {
@@ -166,7 +170,7 @@
 }
 
 .product-info-description {
-    margin-bottom: 125px;
+    
     display: flex;
     flex-direction: column;
     gap: 81px 0;

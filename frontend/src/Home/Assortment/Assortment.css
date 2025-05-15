@@ -243,7 +243,7 @@ input[type="checkbox"] {
 .product-card-top>img {
     position: absolute;
     bottom: 0px;
-    width: 39%;
+    width: 39% !important;
 }
 
 .product-card-top::after {

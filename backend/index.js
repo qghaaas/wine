@@ -11,7 +11,7 @@ const pool = new Pool({
     database: 'postgres',
     password: '1234',
     port: 5432,
-    options: '-c search_path=wine'
+    options: '-c search_path=public'
 });
 
 app.use(cors());

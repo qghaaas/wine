@@ -1,0 +1,37 @@
+.productoffers {
+    width: 100%;
+    height: fit-content;
+}
+
+.productoffers-inner {
+    width: 100%;
+    position: relative;
+    padding-bottom: 125px;
+}
+
+.swiper-slide-product-offers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 75px;
+}
+
+.product-card-container-offers {
+    margin: 0;
+    width: fit-content;
+    display: block;
+}
+
+.productoffers-inner h2 {
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    font-size: 21px;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 0 0 75px 45px;
+}
+
+.swiper-product-card-offers{
+    width: 80%;
+}
