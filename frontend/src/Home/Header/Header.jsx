@@ -39,7 +39,7 @@ export default function Header() {
                                 </div>
                                 <div className='basket'>
                                     <div>
-                                        <Link to="#"> Корзина: 0</Link>
+                                        <Link to="/Basket"> Корзина: 0</Link>
                                     </div>
                                     <p>0 р</p>
                                 </div>

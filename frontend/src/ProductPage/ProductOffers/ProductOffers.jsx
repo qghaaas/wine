@@ -10,7 +10,7 @@ import product from '../../Home/Assortment/img/product.png'
 import flag from '../../Home/Assortment/img/flag.svg'
 import btnswipslider from '../../Home/Swiperoffers/img/btnswipslider.svg'
 
-export default function ProductOffers() {
+export default function ProductOffers({ showTitle = true }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     return (
@@ -18,9 +18,9 @@ export default function ProductOffers() {
             <section className="productoffers">
                 <div className="container">
                     <div className="productoffers-inner">
-                        <h2>ВАМ ТАКЖЕ ПОНРАВИТСЯ...</h2>
+                       {showTitle && <h2>ВАМ ТАКЖЕ ПОНРАВИТСЯ...</h2>} 
 
-                        <div className="swiper-buttons swiper-bu">
+                        <div className="swiper-buttons swiper-buttons-product-offers">
                             <button ref={prevRef} className="swiper-button-prev-custom">
                                 <img src={btnswipslider} alt="prev" />
                             </button>
@@ -55,7 +55,7 @@ export default function ProductOffers() {
                                             <h3>L’ERMITE
                                                 HERMITAGE</h3>
                                             <div className='product-card-bot-info'>
-                                                <span>2009/0.75 л л</span>
+                                                <span>2009/0.75 л</span>
                                                 <div className='product-card-bot-country'>
                                                     <img src={flag} />
                                                     <p>франция/M.CHAPOUTIER</p>
@@ -84,7 +84,7 @@ export default function ProductOffers() {
                                             <h3>L’ERMITE
                                                 HERMITAGE</h3>
                                             <div className='product-card-bot-info'>
-                                                <span>2009/0.75 л л</span>
+                                                <span>2009/0.75 л</span>
                                                 <div className='product-card-bot-country'>
                                                     <img src={flag} />
                                                     <p>франция/M.CHAPOUTIER</p>
@@ -113,7 +113,7 @@ export default function ProductOffers() {
                                             <h3>L’ERMITE
                                                 HERMITAGE</h3>
                                             <div className='product-card-bot-info'>
-                                                <span>2009/0.75 л л</span>
+                                                <span>2009/0.75 л</span>
                                                 <div className='product-card-bot-country'>
                                                     <img src={flag} />
                                                     <p>франция/M.CHAPOUTIER</p>

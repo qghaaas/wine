@@ -7,6 +7,7 @@
     width: 100%;
     position: relative;
     padding-bottom: 125px;
+    color: #fff;
 }
 
 .swiper-slide-product-offers {
@@ -34,4 +35,10 @@
 
 .swiper-product-card-offers{
     width: 80%;
+}
+
+.swiper-buttons-product-offers{
+    top: 40%;
+    bottom: 40%;
+    padding: 0 40px;
 }
