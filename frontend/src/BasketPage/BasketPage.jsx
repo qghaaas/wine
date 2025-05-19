@@ -1,7 +1,8 @@
 import '../main.css'
 import './BasketPage.css'
-
-
+import basketProduct from './img/basketProduct.png'
+import deleteBTN from './img/deleteBTN.svg'
+import flag from '../Home/Assortment/img/flag.svg'
 
 
 export default function BasketPage() {
@@ -33,7 +34,34 @@ export default function BasketPage() {
                                 </div>
 
                                 <div className="basket-product-card">
-                                    
+                                    <div className="basket-product-card-main">
+                                        <div className='basket-product-card-img'>
+                                            <img className='basket-product-photo' src={basketProduct} alt="" />
+                                            <img className='basket-product-deleteBTN' src={deleteBTN} alt="" />
+                                        </div>
+                                        <div className="basket-product-card-description">
+                                            <div className='basket-product-card-name'>
+                                                <h5>LE MEAL
+                                                    HERMITAGE</h5>
+                                                    <div></div>
+                                            </div>
+                                            <p>2010/0.75 л</p>
+                                            <div className='basket-product-card-flag'>
+                                                <img src={flag} alt="" />
+                                                <p>франция/M.CHAPOUTIER</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="basket-product-card-item">
+                                        <p>9 000</p>
+                                        <div className='basket-product-card-add-del'>
+                                            <button>-</button>
+                                            <span>1</span>
+                                            <button>+</button>
+                                        </div>
+                                        <p>9000</p>
+                                    </div>
                                 </div>
                             </div>
 

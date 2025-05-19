@@ -49,7 +49,6 @@
 .basket-product {
     width: 60%;
     border: 1px solid #0A0A0A;
-    padding: 0 45px 0 27px;
 }
 
 .basket-product-title {
@@ -61,10 +60,84 @@
     font-size: 11px;
     line-height: 17px;
     letter-spacing: 5px;
+    border: 1px solid #0A0A0A;
+    padding: 17px 45px 12px 27px;
 }
 
 .basket-product-title-right {
     display: flex;
     gap: 0 74px;
     font-family: "Roboto", sans-serif;
+}
+
+.basket-product-card {
+    display: flex;
+    padding: 13px 45px 30px 27px;
+    justify-content: space-between;
+}
+
+.basket-product-card-main {
+    display: flex;
+    gap: 0 22px;
+}
+
+.basket-product-card-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 39%;
+    height: fit-content;
+    padding-top: 24px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 3px;
+}
+
+.basket-product-card-add-del {
+    display: flex;
+    align-items: center;
+    gap: 0 50px;
+}
+
+.basket-product-card-add-del button {
+    color: #fff;
+    font-size: 20px;
+}
+
+.basket-product-card-img {
+    background: #0A0A0A;
+    min-width: 120px;
+    width: 100%;
+    height: 15vh;
+    position: relative;
+}
+
+.basket-product-card-img>img {
+    position: absolute;
+}
+
+.basket-product-photo {
+    left: 40%;
+    right: 0;
+    transform: translate(-15%, -6%);
+}
+
+.basket-product-deleteBTN {
+    left: 5%;
+    top: 5%;
+}
+
+.basket-product-card-name {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+}
+
+.basket-product-card-name>div{
+    margin-top: 5px;
+    width: 100%;
+    border: 0.97px solid #FFFFFF;
+    opacity: 25%;
 }
