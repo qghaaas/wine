@@ -11,7 +11,7 @@ const pool = new Pool({
     database: 'postgres',
     password: '1234',
     port: 5432,
-    options: '-c search_path=wine'
+    options: '-c search_path=public'
 });
 
 app.use(cors());
@@ -106,8 +106,8 @@ app.get('/api/blogpost/:card_id', async (req, res) => {
                 bp.content_3,
                 bc.title AS card_title,
                 bc.subtitle AS card_subtitle
-            FROM wine.blog_post bp
-            JOIN wine.blog_card bc ON bp.blog_card_id = bc.id
+            FROM blog_post bp
+            JOIN blog_card bc ON bp.blog_card_id = bc.id
             WHERE bp.blog_card_id = $1
         `;
 

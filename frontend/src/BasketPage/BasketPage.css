@@ -1,34 +1,70 @@
-.basketpage{
+.basketpage {
     width: 100%;
     height: fit-content;
 }
 
-.basketpage-inner{
-    width: 100%;
+.basketpage-inner {
+    width: 94%;
+    margin: 0 auto;
+    padding: 80px 0 125px;
+    font-family: "Inter", sans-serif;
+    color: #fff;
 }
 
-.breadcrumbs {
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #666;
+.basketpage-title {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    padding-bottom: 35px;
 }
 
-.breadcrumbs a {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s;
+.basketpage-title-path {
+    display: flex;
+    align-items: center;
+    gap: 0 29px;
 }
 
-.breadcrumbs a:hover {
-    color: #000;
-    text-decoration: underline;
+.basketpage-title-path {
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 17px;
+    letter-spacing: 5px;
 }
 
-.breadcrumbs span:last-child {
-    color: #333;
-    font-weight: 500;
+.basketpage-title-path span {
+    opacity: 50%;
+}
+
+.basketpage-title-path>div {
+    width: 29px;
+    border: 1px solid #fff;
+    opacity: 50%;
+}
+
+.basket-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.basket-product {
+    width: 60%;
+    border: 1px solid #0A0A0A;
+    padding: 0 45px 0 27px;
+}
+
+.basket-product-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 12px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 17px;
+    letter-spacing: 5px;
+}
+
+.basket-product-title-right {
+    display: flex;
+    gap: 0 74px;
+    font-family: "Roboto", sans-serif;
 }

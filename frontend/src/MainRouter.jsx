@@ -6,7 +6,7 @@ import WhiskeyPagelink from "./Route/WhiskeyPagelink";
 import ProductPagelink from "./Route/ProductPagelink";
 import Bloglink from './Route/Bloglink';
 import BlogPostlink from "./Route/BlogPostlink";
-import BasketPagelink from "./BasketPage/BasketPage";
+import BasketPagelink from "./Route/BasketPagelink";
 
 export default function MainRouter() {
     return (
