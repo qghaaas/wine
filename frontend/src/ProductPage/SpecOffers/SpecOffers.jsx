@@ -7,7 +7,7 @@ import specoffersimg2 from './img/specoffersimg2.jpg'
 export default function SpecOffers() {
     return (
         <>
-            <section className="specoffers">
+            <section className="specoffers" id='specoffers'>
                 <div className="container">
                     <div className="specoffers-inner">
                         <div className='specoffers-item'>

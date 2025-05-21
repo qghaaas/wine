@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const PORT = process.env.PORT || 3010;
 
 const app = express();
@@ -92,7 +94,7 @@ app.get('/api/blog-cards/:id', async (req, res) => {
 app.get('/api/blogpost/:card_id', async (req, res) => {
     try {
         const { card_id } = req.params;
-        
+
         const query = `
             SELECT 
                 bp.main_title,
@@ -112,7 +114,7 @@ app.get('/api/blogpost/:card_id', async (req, res) => {
         `;
 
         const { rows } = await pool.query(query, [card_id]);
-        
+
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Post not found' });
         }
@@ -122,6 +124,51 @@ app.get('/api/blogpost/:card_id', async (req, res) => {
         console.error(err);
         res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+// Регистрация
+app.post('/api/register', async (req, res) => {
+  const { first_name, last_name, email, password } = req.body;
+
+  try {
+    const existingUser = await pool.query('SELECT * FROM wine.user WHERE email = $1', [email]);
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({ message: 'Email уже зарегистрирован' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await pool.query(
+      'INSERT INTO wine.user (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)',
+      [first_name, last_name, email, hashedPassword]
+    );
+
+    res.status(201).json({ message: 'Пользователь зарегистрирован' });
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
+
+// Вход
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const userResult = await pool.query('SELECT * FROM wine.user WHERE email = $1', [email]);
+    const user = userResult.rows[0];
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ message: 'Неверный email или пароль' });
+    }
+
+    const token = jwt.sign({ id: user.id, email: user.email }, 'your_jwt_secret', {
+      expiresIn: '1d',
+    });
+
+    res.json({ token, user: { id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email } });
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
 });
 
 app.listen(PORT, () => {

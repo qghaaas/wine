@@ -7,6 +7,10 @@ import ProductPagelink from "./Route/ProductPagelink";
 import Bloglink from './Route/Bloglink';
 import BlogPostlink from "./Route/BlogPostlink";
 import BasketPagelink from "./Route/BasketPagelink";
+import Login from "./User/LoginRegister/Login";
+import Register from "./User/LoginRegister/Register";
+import Error404link from "./Route/Error404link";
+
 
 export default function MainRouter() {
     return (
@@ -22,6 +26,9 @@ export default function MainRouter() {
                     <Route path="/Blog" element={<Bloglink />} />
                     <Route path="/BlogPost/:card_id" element={<BlogPostlink />} />
                     <Route path="/Basket" element={<BasketPagelink />} />
+                    <Route path="/Login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
+                    <Route path="/Error" element={<Error404link />} />
 
                 </Routes>
             </HashRouter>

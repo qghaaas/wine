@@ -3,6 +3,8 @@ import './BasketPage.css'
 import basketProduct from './img/basketProduct.png'
 import deleteBTN from './img/deleteBTN.svg'
 import flag from '../Home/Assortment/img/flag.svg'
+import { Link } from 'react-router-dom'
+
 
 
 export default function BasketPage() {
@@ -19,7 +21,7 @@ export default function BasketPage() {
                                 <div></div>
                                 <span>ЗАКАЗ ОФОРМЛЕН</span>
                             </div>
-                            <button className='see-all'><p>ПРОДОЛЖИТЬ ПОКУПКИ</p> <div></div></button>
+                            <Link className='see-all continue-shopping'><p>ПРОДОЛЖИТЬ ПОКУПКИ</p> <div></div></Link>
                         </div>
 
                         <div className="basket-container">
@@ -36,14 +38,14 @@ export default function BasketPage() {
                                 <div className="basket-product-card">
                                     <div className="basket-product-card-main">
                                         <div className='basket-product-card-img'>
-                                            <img className='basket-product-photo' src={basketProduct} alt="" />
                                             <img className='basket-product-deleteBTN' src={deleteBTN} alt="" />
+                                            <img className='basket-product-photo' src={basketProduct} alt="" />
                                         </div>
                                         <div className="basket-product-card-description">
                                             <div className='basket-product-card-name'>
                                                 <h5>LE MEAL
                                                     HERMITAGE</h5>
-                                                    <div></div>
+                                                <div></div>
                                             </div>
                                             <p>2010/0.75 л</p>
                                             <div className='basket-product-card-flag'>
@@ -66,7 +68,21 @@ export default function BasketPage() {
                             </div>
 
                             <div className="basket-price">
+                                <ul className='basket-price-item'>
+                                    <li><span>СУММА................... 1350</span></li>
+                                    <li><span>СКИДКА.................. 0</span></li>
+                                    <li><span>ДОСТАВКА............... 100</span></li>
+                                    <li><span>К ОПЛАТЕ................ 1450</span></li>
+                                </ul>
 
+                                <Link to="#">Оформить заказ</Link>
+
+                                <ul className='basket-payment-met'>
+                                    <li><span>Способы оплаты:</span></li>
+                                    <li><span>- картой Visa и MasterCard</span></li>
+                                    <li><span>- наличными при получении </span></li>
+                                    <li><span>- юридическому лицу на р/с</span></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

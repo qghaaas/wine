@@ -1,12 +1,26 @@
 import '../../main.css'
 import './Header.css'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from './img/logo.svg'
 import search from './img/search.svg'
 import geoicon from './img/geoicon.svg'
 
 
 export default function Header() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token); // если токен есть — пользователь авторизован
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+        navigate('/');
+    };
     return (
         <>
             <header className="header">
@@ -22,29 +36,36 @@ export default function Header() {
                                 </button>
                             </div>
 
-                            <div className='nav-right'>
+                            <div className="nav-right">
                                 <div className='authentication'>
                                     <div>
-                                        <Link to="#">Регистрация</Link>
-                                        <Link to="#">Вход</Link>
+                                        {isAuthenticated ? (
+                                            <button onClick={handleLogout} className="logout-button">Выйти</button>
+                                        ) : (
+                                            <>
+                                                <Link to="/Register">Регистрация</Link>
+                                                <Link to="/Login">Вход</Link>
+                                            </>
+                                        )}
                                     </div>
                                     <Link to="#">Личный кабинет</Link>
                                 </div>
-                                <div className='geolocation'>
+
+                                <div className="geolocation">
                                     <div>
-                                        <img src={geoicon} alt="" />
+                                        <img src={geoicon} alt="geo" />
                                         <p>Москва</p>
                                     </div>
                                     <p>063 658 32 21</p>
                                 </div>
-                                <div className='basket'>
+
+                                <div className="basket">
                                     <div>
                                         <Link to="/Basket"> Корзина: 0</Link>
                                     </div>
                                     <p>0 р</p>
                                 </div>
                             </div>
-
                         </nav>
 
                         <nav className='header-bot'>

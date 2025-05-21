@@ -1,0 +1,155 @@
+.login-register {
+  width: 100%;
+  height: 100vh;
+  background-color: #1B1918;
+
+}
+
+.auth-container {
+  width: 25%;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 15px;
+  background: #0A0A0A;
+  font-family: "Inter", sans-serif;
+  color: #fff;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 17px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input {
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.auth-form input::placeholder,
+.auth-form input:focus {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #0A0A0A;
+}
+
+
+
+.auth-logreg-label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 20px;
+  letter-spacing: 3px;
+  opacity: 50%;
+  margin-bottom: 5px;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+  box-shadow: 0 0 5px rgba(106, 27, 154, 0.2);
+}
+
+.auth-button {
+  padding: 12px;
+  font-size: 16px;
+  background: #7A0000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+  background: linear-gradient(180deg, #780303 0%, #470909 100%);
+}
+
+.auth-error {
+  color: #7A0000;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.show-icon {
+  position: absolute;
+  top: 35%;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.show-icon:hover {
+  opacity: 1;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.checkbox-wrapper label {
+  display: inline;
+}
+
+.checkbox-wrapper a {
+  color: #7A0000;
+  text-decoration: none;
+}
+
+.checkbox-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.log-reg-back {
+  padding: 2% 0 0 5%;
+  width: fit-content;
+}
+
+.logout-button {
+  color: #7A0000;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.logout-button:hover {
+  scale: 1.1;
+  color: linear-gradient(180deg, #331111 0%, #541C1C 100%);
+}
