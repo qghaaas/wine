@@ -1,6 +1,5 @@
 import '../../main.css'
 import './Swiperoffers.css'
-import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -9,6 +8,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import swiperoffer1 from './img/swiperoffer1.jpg'
 import { Link } from 'react-router-dom'
 import btnswipslider from './img/btnswipslider.svg'
+
 
 
 export default function Swiperoffers() {

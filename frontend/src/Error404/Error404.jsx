@@ -2,6 +2,8 @@ import '../main.css'
 import './Error404.css'
 import errorArrow from './img/errorArrow.svg'
 
+
+
 export default function Error404() {
     const handleArrowClick = () => {
         const nextSection = document.getElementById('specoffers');
@@ -9,7 +11,6 @@ export default function Error404() {
             nextSection.scrollIntoView({ behavior: 'smooth' });
         }
     };
-
     return (
         <>
             <section className="error404">

@@ -126,7 +126,6 @@ app.get('/api/blogpost/:card_id', async (req, res) => {
     }
 });
 
-// Регистрация
 app.post('/api/register', async (req, res) => {
   const { first_name, last_name, email, password } = req.body;
 
@@ -149,7 +148,6 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Вход
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 

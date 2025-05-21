@@ -10,6 +10,8 @@ import product from '../../Home/Assortment/img/product.png'
 import flag from '../../Home/Assortment/img/flag.svg'
 import btnswipslider from '../../Home/Swiperoffers/img/btnswipslider.svg'
 
+
+
 export default function ProductOffers({ showTitle = true }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);

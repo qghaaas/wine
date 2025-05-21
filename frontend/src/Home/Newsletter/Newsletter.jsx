@@ -5,6 +5,8 @@ import facebook from './img/facebook.svg'
 import instagram from './img/instagram.svg'
 import telegram from './img/telegram.svg'
 
+
+
 export default function Newsletter() {
     return (
         <>

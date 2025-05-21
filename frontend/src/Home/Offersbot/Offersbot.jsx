@@ -1,8 +1,7 @@
 import '../../main.css'
 import './Offersbot.css'
-import offersbot1 from './img/offersbot1.jpg'
-import offersbot2 from './img/offersbot2.jpg'
-import offersbot3 from './img/offersbot3.jpg'
+
+
 
 export default function Offersbot() {
     return (

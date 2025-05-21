@@ -3,6 +3,8 @@ import './Blog.css'
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 export default function Blog() {
     const [blogCards, setBlogCards] = useState([]);
     const [loading, setLoading] = useState(true);

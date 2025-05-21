@@ -13,7 +13,7 @@ export default function Header() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        setIsAuthenticated(!!token); // если токен есть — пользователь авторизован
+        setIsAuthenticated(!!token); 
     }, []);
 
     const handleLogout = () => {

@@ -3,7 +3,7 @@ import './Productinfo.css'
 import productpagephoto from './img/productpagephoto.png'
 import flag from '../../Home/Assortment/img/flag.svg'
 import productinfoicon from './img/productinfoicon.svg'
-import React, { useState} from 'react'
+
 
 
 export default function Productinfo() {

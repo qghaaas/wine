@@ -7,6 +7,7 @@ import ellipse from './img/ellipse.svg'
 import { Link } from 'react-router-dom';
 
 
+
 export default function Assortment() {
     const [wines, setWines] = useState([]);
     const [loading, setLoading] = useState(true);

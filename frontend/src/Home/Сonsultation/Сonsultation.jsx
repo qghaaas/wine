@@ -2,7 +2,6 @@ import '../../main.css'
 import './Сonsultation.css'
 import consultationimg from './img/consultationimg.jpg'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react';
 
 
 
