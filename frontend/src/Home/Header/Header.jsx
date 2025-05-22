@@ -13,13 +13,22 @@ export default function Header() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        setIsAuthenticated(!!token); 
+        setIsAuthenticated(!!token);
     }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
         navigate('/');
+    };
+
+    const handleBasketClick = (e) => {
+        e.preventDefault();
+        if (isAuthenticated) {
+            navigate('/Basket');
+        } else {
+            navigate('/AccountSelect');
+        }
     };
     return (
         <>
@@ -61,7 +70,9 @@ export default function Header() {
 
                                 <div className="basket">
                                     <div>
-                                        <Link to="/Basket"> Корзина: 0</Link>
+                                        <Link to="/Basket" onClick={handleBasketClick}>
+                                            Корзина: 0
+                                        </Link>
                                     </div>
                                     <p>0 р</p>
                                 </div>
@@ -71,15 +82,15 @@ export default function Header() {
                         <nav className='header-bot'>
                             <ul className='header-bot-item'>
                                 <li><Link to="/Wine">Вино</Link></li>
-                                <li><Link to="#">Игристое</Link></li>
+                                <li><Link to="/Error">Игристое</Link></li>
                                 <li><Link to="/Whiskey">Виски</Link></li>
-                                <li><Link to="#">Коньяк</Link></li>
-                                <li><Link to="#">Арманьяк</Link></li>
-                                <li><Link to="#">Ром</Link></li>
-                                <li><Link to="#">Водка</Link></li>
-                                <li><Link to="#">Ликер</Link></li>
-                                <li><Link to="#">Коктели</Link></li>
-                                <li><Link to="#">Деликатесы</Link></li>
+                                <li><Link to="/Error">Коньяк</Link></li>
+                                <li><Link to="/Error">Арманьяк</Link></li>
+                                <li><Link to="/Error">Ром</Link></li>
+                                <li><Link to="/Error">Водка</Link></li>
+                                <li><Link to="/Error">Ликер</Link></li>
+                                <li><Link to="/Error">Коктели</Link></li>
+                                <li><Link to="/Error">Деликатесы</Link></li>
                             </ul>
                         </nav>
                     </div>

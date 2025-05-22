@@ -239,7 +239,7 @@
 .product-card-top>img {
     position: absolute;
     bottom: 0px;
-    width: 39% !important;
+    width: 39% ;
 }
 
 .product-card-top::after {

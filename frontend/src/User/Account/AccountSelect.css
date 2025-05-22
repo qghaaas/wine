@@ -1,0 +1,57 @@
+.account-select {
+    width: 100%;
+    height: 100vh;
+    background-color: #1B1918;
+}
+
+.account-select-container {
+    width: 30%;
+    padding: 30px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    border-radius: 15px;
+    margin: 15% auto 0;
+}
+
+.account-select-container h2 {
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 17px;
+}
+
+.accounts-list {
+    margin: 2rem 0;
+}
+
+.account-item {
+    display: block;
+    width: 80%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+    background-color: #7A0000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    border-radius: 8px;
+    letter-spacing: 2px;
+}
+
+.account-item:hover {
+    background: linear-gradient(180deg, #780303 0%, #470909 100%);
+}
+
+.new-account-button {
+    background: none;
+    border: none;
+    color: #7A0000;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.new-account-button:hover {
+    text-decoration: underline;
+}

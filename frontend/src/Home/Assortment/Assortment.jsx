@@ -310,7 +310,7 @@ export default function Assortment() {
 
                                     return (
                                         <div className='product-card' key={wine.id}>
-                                            <Link to="/Product-Wine">
+                                            <Link to={`/Product-Wine/${wine.id}`}>
                                                 <div className='product-card-top'>
                                                     <img src={wine.wine_image_path || product} alt={wine.wine_name} />
                                                 </div>

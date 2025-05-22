@@ -3,37 +3,65 @@ import './Productinfo.css'
 import productpagephoto from './img/productpagephoto.png'
 import flag from '../../Home/Assortment/img/flag.svg'
 import productinfoicon from './img/productinfoicon.svg'
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 
 export default function Productinfo() {
+    const { id } = useParams();
+    const [wineData, setWineData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
+   useEffect(() => {
+  const fetchWineData = async () => {
+    try {
+      const response = await fetch(`http://localhost:3010/api/wines/${id}`); 
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+      }
+      const data = await response.json();
+      setWineData(data);
+    } catch (error) {
+      console.error('Ошибка загрузки данных:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  fetchWineData();
+}, [id]);
+    if (loading) return <div>Загрузка...</div>;
+    if (!wineData) return <div>Товар не найден</div>;
+
+    const [year, volume] = wineData.wine_year_volume.split('/');
+    const [country, manufacturer] = wineData.country_manufacturer.split('/');
     return (
         <>
             <section className="productinfo">
                 <div className="container">
                     <div className="productinfo-inner">
                         <div className="productinfo-photo">
-                            <img src={productpagephoto} alt="" />
+                            <img src={wineData.wine_image_path || productpagephoto} alt={wineData.wine_name} />
                         </div>
 
                         <div className="productinfo-info-content">
                             <div className="productinfo-info-content-top">
                                 <div className="productinfo-info-content-top-item">
                                     <div className='productinfo-info-content-top-item-nameprice'>
-                                        <h2>CHATEAU <br />
-                                            HAUT-BRION</h2>
+                                        <h2>{wineData.wine_name}</h2>
                                         <div className='productinfo-info-content-top-item-nameprice-price'>
                                             <span>цена за 1 шт</span>
-                                            <p>90 000 Р</p>
+                                            <p>{new Intl.NumberFormat('ru-RU').format(wineData.price)} Р</p>
                                         </div>
                                     </div>
                                     <div className='productinfo-info-content-top-flag'>
                                         <div className='productinfo-info-content-top-flag-item'>
-                                            <p>2009/0.75 л</p>
+                                            <p>{year}/{volume} л</p>
                                             <div>
-                                                <img src={flag} alt="" />
-                                                <span>франция/HAUT-BRION</span>
+                                                <img src={wineData.flag_image_path || flag} alt={country} />
+                                                <span>{country}/{manufacturer}</span>
                                             </div>
                                         </div>
                                         <div className='add-basket'>
@@ -48,37 +76,37 @@ export default function Productinfo() {
                                         <ul className='product-column'>
                                             <li>
                                                 <span>ГЕОГРАФИЯ:</span>
-                                                <p>Франция - Бордо - Пессак-Леоньян</p>
+                                                <p>{wineData.region}</p>
                                             </li>
                                             <li>
                                                 <span>КРЕПОСТЬ:</span>
-                                                <p>14,5%</p>
+                                                <p>{wineData.alcohol_content}%</p>
                                             </li>
                                             <li>
                                                 <span>ИМПОРТЕР:</span>
-                                                <p>SIMPLE WINE</p>
+                                                <p>{wineData.importer}</p>
                                             </li>
                                         </ul>
 
                                         <ul className='product-column'>
                                             <li>
                                                 <span>КЛАССИФИКАЦИЯ:</span>
-                                                <p>1-er gcc</p>
+                                                <p>{wineData.classification}</p>
                                             </li>
                                             <li>
                                                 <span>САХАР:</span>
-                                                <p>0,1 г/л</p>
+                                                <p>{wineData.sugar_content} Г/Л</p>
                                             </li>
                                             <li>
                                                 <span>РЕЙТИНГ:</span>
-                                                <p>rp 95</p>
+                                                <p>RP {wineData.rating}</p>
                                             </li>
                                         </ul>
 
                                         <ul className='product-column product-column-third'>
                                             <li>
                                                 <span>СОРТОВОЙ СОСТАВ:</span>
-                                                <p>Каберне Фран Каберне Совин. Мерло Пти Вердо</p>
+                                                <p>{wineData.grape_varieties}</p>
                                             </li>
                                             <li className="product-image-container">
                                                 <img src={productinfoicon} alt="" />
@@ -93,15 +121,15 @@ export default function Productinfo() {
                             <div className='product-info-description'>
                                 <div className='product-info-description-item product-info-description-border '>
                                     <h3>цвет, вкус, аромат:</h3>
-                                    <p>Chateau Haut-Brion – относится к великим винам современности. Производимое с 1533 года, оно в какой-то степени может считаться «отцом всех Премьер Крю Классе». Это самое старое Гран Крю Бордо, создатель нового стиля вин в 17 веке. Изюминка Haut-Brion – чрезвычайная щедрость и концентрация, подобная ароматическая настойчивость присуща лишь самым благородным винам. Букет сдержанный, раскрывается неспешно и изящно тонами ягод – ежевики, слив, шелковицы и смородины, сменяясь минеральными, древесными, пряными и копчеными нотками. Вкус столь же замечательно многослойный, величественный, богат танинами, однако полон изящества и утонченности. Начиная со средины дегустации, мощность вина раскрывается полностью, кульминируя в исключительно длительном послевкусии. Перед нами истинный шедевр, Wine Advocate оценил вино в 100 баллов. Рекомендуется пить в период 2020-2054 года.</p>
+                                    <p>{wineData.color_taste_aroma}</p>
                                 </div>
                                 <div className='product-info-description-item product-info-description-border '>
                                     <h3>Легенда:</h3>
-                                    <p>Виноградник Шато находится в коммуне Пессак-Леоньян, и является частью одноименного апелласьона, расположенного на севере винодельческого региона Грав в Бордо. Терруар сформированный двумя крупными гравийными грядами гюнцского периода (гюнцом называется ледниковая эпоха первого четвертичного периода), выдается на 12-15 метров над уровнем дна соседних водоемов. Гравием называется галечник небольшого размера, сформированный различными разновидностями кварца: для Шато О-Брион этот галечник является настоящим драгоценным камнем. Две речушки – Пегю на севере и Серпан на юге – ограничивают эту обширную гравийную террасу под названием О-Брион, которая упоминается на старинных картах региона и в нотариальных актах уже с начала 15 века. Подпочва терруара – суглинок. Площадь виноградника – 51 гектара. 48 из них засажены сортами красного винограда (Мерло, Каберне Совиньон, Каберне Фран и Пти Вердо) и около 3 – сортами белого винограда (Семильон и Совиньон Блан). Поместье Шато О-Брион было основано Жаном де Понтаком, и производило вина уже с 1533 года, что делает его старейшим хозяйством региона Бордо. Красное вино Шато О-Брион воплощает в себе пятивековую традицию виноделия и является неотъемлемой частью мировой истории вина. В 1660 году вино Haut Brion, под его сегодняшним названием, подавалось к столу короля Англии Карла Второго, что по всей видимости делает О-БРИОН старейшим элитным брендом во всем мире. Благодаря применению, еще в те далекие времена, новых способов производства и выдержки, это вино стало великим предшественником всех нынешних красных вин предназначенных для длительного хранения. В 1855 году о-брион было возведено в ранг Премьер Крю Классе красных вин Жиронды. Только три других бордоских вина были удостоены такой же высочайшей оценки качества в классификации, которая до сих пор остается актуальной.</p>
+                                    <p>{wineData.legend}</p>
                                 </div>
                                 <div className='product-info-description-item'>
                                     <h3>винификация:</h3>
-                                    <p>Виноград поступает на винодельню, где после сортировки, ферментации и прессования сок полученный самотеком отделяется от мезги, которая также прессуется для получения «вэн де пресс». Вину дают отдохнуть, далее следует яблочно-молочное брожение и асамбляж путем определения наилучшей возможной комбинации различных сортов. Выдержка проходит в дубовых бочках на протяжении 18-22 месяцев, 80 % из которых новые, с периодическим снятием с осадка. После выдержки в баррелях вино переливают в чаны перед бутылированием. </p>
+                                    <p>{wineData.vinification}</p>
                                 </div>
                             </div>
                         </div>
