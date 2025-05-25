@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from '../../Home/Assortment/img/arrowShow.svg'
 import sortproductArr from '../../Home/Assortment/img/sortproductArr.svg'
 import ellipse from '../../Home/Assortment/img/ellipse.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 
 export default function Assortment() {
@@ -19,6 +19,7 @@ export default function Assortment() {
         classification: false,
         grape: false,
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchWines = async () => {
@@ -41,6 +42,44 @@ export default function Assortment() {
             ...prev,
             [formName]: !prev[formName]
         }));
+    };
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token);
+    }, []);
+
+
+    const handleAddToBasket = async (product_id) => {
+        if (!isAuthenticated) {
+            navigate('/AccountSelect');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3010/api/basket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    product_id,
+                    product_type: 'wine'
+                })
+            });
+
+            if (response.ok) {
+                alert('Товар добавлен в корзину');
+            } else {
+                const err = await response.json();
+                alert('Ошибка: ' + (err.error || 'Не удалось добавить в корзину'));
+            }
+        } catch (error) {
+            console.error('Ошибка добавления в корзину:', error);
+            alert('Сетевая ошибка при добавлении в корзину');
+        }
     };
 
     if (loading) return <div>Loading...</div>;
@@ -172,8 +211,7 @@ export default function Assortment() {
                                     </>
                                 )}
                             </form>
-
-                            {/* Форма цены */}
+          
                             <form action="" className={`assortment-form ${openForms.price ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цена</legend>
@@ -196,7 +234,6 @@ export default function Assortment() {
                                 )}
                             </form>
 
-                            {/* Форма страны */}
                             <form action="" className={`assortment-form ${openForms.country ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Страна</legend>
@@ -209,12 +246,11 @@ export default function Assortment() {
                                 </div>
                                 {openForms.country && (
                                     <div>
-                                        {/* Добавьте содержимое для формы страны здесь */}
+
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма региона */}
                             <form action="" className={`assortment-form ${openForms.region ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Регион</legend>
@@ -227,12 +263,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.region && (
                                     <div>
-                                        {/* Добавьте содержимое для формы региона здесь */}
+                                 
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма классификации */}
+                         
                             <form action="" className={`assortment-form ${openForms.classification ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Классификация</legend>
@@ -245,12 +281,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.classification && (
                                     <div>
-                                        {/* Добавьте содержимое для формы классификации здесь */}
+                                   
                                     </div>
                                 )}
                             </form>
 
-                            {/* Форма сорта винограда */}
+                         
                             <form action="" className={`assortment-form ${openForms.grape ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сорт Винограда</legend>
@@ -263,7 +299,7 @@ export default function Assortment() {
                                 </div>
                                 {openForms.grape && (
                                     <div>
-                                        {/* Добавьте содержимое для формы сорта винограда здесь */}
+                                       
                                     </div>
                                 )}
                             </form>
@@ -326,7 +362,7 @@ export default function Assortment() {
                                                             <span>ЦЕНА ЗА 1 ШТ</span>
                                                             <p>{new Intl.NumberFormat('ru-RU').format(wine.price)} р</p>
                                                         </div>
-                                                        <button>В КОРЗИНУ</button>
+                                                        <button onClick={() => handleAddToBasket(wine.id)}>В КОРЗИНУ</button>
                                                     </div>
                                                 </div>
                                             </div>

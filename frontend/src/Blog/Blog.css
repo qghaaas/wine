@@ -83,3 +83,105 @@
     font-size: 12px;
     letter-spacing: 9px;
 }
+
+/* Планшеты (от 768px до 1024px) */
+@media (max-width: 1024px) {
+  .blog-title {
+    width: 60%;
+    margin-bottom: 50px;
+  }
+
+  .blog-title h2 {
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+
+  .blog-title p {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .blog-container {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 2%;
+  }
+
+  .blog-card p {
+    font-size: 20px;
+    width: 80%;
+    margin-bottom: 40px;
+  }
+
+  .blog-card h3 {
+    font-size: 30px;
+  }
+
+  .blog-card a {
+    font-size: 11px;
+    letter-spacing: 6px;
+  }
+}
+
+/* Мобильные устройства (до 767px) */
+@media (max-width: 767px) {
+  .blog-inner {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .blog-title {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .blog-title h2 {
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+
+  .blog-title p {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .blog-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blog-card {
+    padding: 25px 0;
+  }
+
+  .blog-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .blog-card p {
+    font-size: 16px;
+    width: 90%;
+    margin-bottom: 30px;
+  }
+
+  .blog-card a {
+    font-size: 10px;
+    letter-spacing: 5px;
+  }
+
+  .see-all {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    padding: 12px 0;
+  }
+
+  .see-all p {
+    display: inline;
+  }
+
+  .see-all div {
+    display: none;
+  }
+}

@@ -153,3 +153,13 @@ CREATE TABLE wine.user (
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE wine.basket (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES wine.user(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL,
+    product_type TEXT NOT NULL CHECK (product_type IN ('wine', 'whiskey')),
+    quantity INTEGER NOT NULL,
+    discount INTEGER DEFAULT 0,  
+    delivery INTEGER DEFAULT 100 
+);

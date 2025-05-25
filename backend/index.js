@@ -8,39 +8,39 @@ const PORT = process.env.PORT || 3010;
 const app = express();
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: '1234',
-    port: 5432,
-    options: '-c search_path=wine'
+  user: 'postgres',
+  host: 'localhost',
+  database: 'postgres',
+  password: '1234',
+  port: 5432,
+  options: '-c search_path=wine'
 });
 
 app.use(cors());
 app.use(express.json());
 
 app.get('/api/wines', async (req, res) => {
-    try {
-        const { rows } = await pool.query('SELECT * FROM wine_assortment');
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+  try {
+    const { rows } = await pool.query('SELECT * FROM wine_assortment');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/api/wines/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { rows } = await pool.query('SELECT * FROM wine_assortment WHERE id = $1', [id]);
-    
+
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Wine not found' });
     }
-    
+
     res.setHeader('Content-Type', 'application/json');
     res.json(rows[0]);
-    
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -48,58 +48,58 @@ app.get('/api/wines/:id', async (req, res) => {
 });
 
 app.get('/api/whiskey', async (req, res) => {
-    try {
-        const { rows } = await pool.query('SELECT * FROM whiskey_assortment');
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+  try {
+    const { rows } = await pool.query('SELECT * FROM whiskey_assortment');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/api/whiskey/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const { rows } = await pool.query('SELECT * FROM whiskey_assortment WHERE id = $1', [id]);
-        if (rows.length === 0) {
-            return res.status(404).json({ error: 'Wine not found' });
-        }
-        res.json(rows[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+  const { id } = req.params;
+  try {
+    const { rows } = await pool.query('SELECT * FROM whiskey_assortment WHERE id = $1', [id]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Wine not found' });
     }
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/api/blog-cards', async (req, res) => {
-    try {
-        const { rows } = await pool.query('SELECT * FROM blog_card');
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+  try {
+    const { rows } = await pool.query('SELECT * FROM blog_card');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/api/blog-cards/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const { rows } = await pool.query('SELECT * FROM blog_card WHERE id = $1', [id]);
-        if (rows.length === 0) {
-            return res.status(404).json({ error: 'Card not found' });
-        }
-        res.json(rows[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+  const { id } = req.params;
+  try {
+    const { rows } = await pool.query('SELECT * FROM blog_card WHERE id = $1', [id]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Card not found' });
     }
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/api/blogpost/:card_id', async (req, res) => {
-    try {
-        const { card_id } = req.params;
+  try {
+    const { card_id } = req.params;
 
-        const query = `
+    const query = `
             SELECT 
                 bp.main_title,
                 bp.main_content,
@@ -117,17 +117,17 @@ app.get('/api/blogpost/:card_id', async (req, res) => {
             WHERE bp.blog_card_id = $1
         `;
 
-        const { rows } = await pool.query(query, [card_id]);
+    const { rows } = await pool.query(query, [card_id]);
 
-        if (rows.length === 0) {
-            return res.status(404).json({ error: 'Post not found' });
-        }
-
-        res.json(rows[0]);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Post not found' });
     }
+
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.post('/api/register', async (req, res) => {
@@ -184,7 +184,6 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Защищенный маршрут для корзины
 app.get('/api/cart', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query(
@@ -197,6 +196,101 @@ app.get('/api/cart', authenticateToken, async (req, res) => {
   }
 });
 
+app.post('/api/basket', authenticateToken, async (req, res) => {
+  const { product_id, product_type } = req.body;
+  try {
+    const existing = await pool.query(
+      `SELECT * FROM wine.basket WHERE user_id = $1 AND product_id = $2 AND product_type = $3`,
+      [req.user.id, product_id, product_type]
+    );
+
+    if (existing.rows.length) {
+      await pool.query(
+        `UPDATE wine.basket SET quantity = quantity + 1 WHERE id = $1`,
+        [existing.rows[0].id]
+      );
+    } else {
+      await pool.query(
+        `INSERT INTO wine.basket (user_id, product_id, product_type, quantity) VALUES ($1, $2, $3, 1)`,
+        [req.user.id, product_id, product_type]
+      );
+    }
+
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка при добавлении в корзину' });
+  }
+});
+
+app.get('/api/basket', authenticateToken, async (req, res) => {
+  try {
+    const result = await pool.query(`
+        SELECT b.id, b.product_id, b.quantity, b.product_type,
+             COALESCE(w.wine_name, wk.whiskey_name) AS name,
+             COALESCE(w.wine_year_volume, wk.whiskey_year_volume) AS year_volume,
+             COALESCE(w.price, wk.price) AS price,
+             COALESCE(w.country_manufacturer, wk.country_manufacturer) AS country_manufacturer,
+             COALESCE(w.wine_image_path, wk.whiskey_image_path) AS image_path,
+             COALESCE(w.flag_image_path, wk.flag_image_path) AS flag_image_path
+      FROM wine.basket b
+      LEFT JOIN wine.wine_assortment w ON b.product_type = 'wine' AND b.product_id = w.id
+      LEFT JOIN wine.whiskey_assortment wk ON b.product_type = 'whiskey' AND b.product_id = wk.id
+      WHERE b.user_id = $1
+    `, [req.user.id]);
+
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка при получении корзины' });
+  }
+});
+
+app.delete('/api/basket/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query(`DELETE FROM wine.basket WHERE id = $1 AND user_id = $2`, [id, req.user.id]);
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка при удалении товара' });
+  }
+});
+
+app.patch('/api/basket/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+  const { change } = req.body;
+
+  try {
+    await pool.query(`
+      UPDATE wine.basket
+      SET quantity = GREATEST(quantity + $1, 1)
+      WHERE id = $2 AND user_id = $3
+    `, [change, id, req.user.id]);
+
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка при изменении количества' });
+  }
+});
+
+app.put('/api/basket/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+  const { quantity } = req.body;
+
+  try {
+    if (quantity < 1) {
+      return res.status(400).json({ error: 'Минимум 1 единица товара' });
+    }
+
+    await pool.query(
+      `UPDATE wine.basket SET quantity = $1 WHERE id = $2 AND user_id = $3`,
+      [quantity, id, req.user.id]
+    );
+
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка при установке количества' });
+  }
+});
+
 app.listen(PORT, () => {
-    console.log(`Server starting on port ${PORT}`);
+  console.log(`Server starting on port ${PORT}`);
 });

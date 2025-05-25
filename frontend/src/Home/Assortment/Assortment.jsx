@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from './img/arrowShow.svg'
 import sortproductArr from './img/sortproductArr.svg'
 import ellipse from './img/ellipse.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -20,6 +20,7 @@ export default function Assortment() {
         classification: false,
         grape: false,
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchWines = async () => {
@@ -42,6 +43,44 @@ export default function Assortment() {
             ...prev,
             [formName]: !prev[formName]
         }));
+    };
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token);
+    }, []);
+
+
+    const handleAddToBasket = async (product_id) => {
+        if (!isAuthenticated) {
+            navigate('/AccountSelect');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3010/api/basket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    product_id,
+                    product_type: 'wine'
+                })
+            });
+
+            if (response.ok) {
+                alert('Товар добавлен в корзину');
+            } else {
+                const err = await response.json();
+                alert('Ошибка: ' + (err.error || 'Не удалось добавить в корзину'));
+            }
+        } catch (error) {
+            console.error('Ошибка добавления в корзину:', error);
+            alert('Сетевая ошибка при добавлении в корзину');
+        }
     };
 
     if (loading) return <div>Loading...</div>;
@@ -302,7 +341,6 @@ export default function Assortment() {
                             </nav>
 
 
-
                             <div className='product-card-container'>
                                 {wines.map((wine) => {
                                     const [year, volume] = wine.wine_year_volume.split('/');
@@ -328,7 +366,7 @@ export default function Assortment() {
                                                             <span>ЦЕНА ЗА 1 ШТ</span>
                                                             <p>{new Intl.NumberFormat('ru-RU').format(wine.price)} р</p>
                                                         </div>
-                                                        <button>В КОРЗИНУ</button>
+                                                        <button onClick={() => handleAddToBasket(wine.id)}>В КОРЗИНУ</button>
                                                     </div>
                                                 </div>
                                             </div>
