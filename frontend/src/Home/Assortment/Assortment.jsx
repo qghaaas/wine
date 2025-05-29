@@ -21,6 +21,11 @@ export default function Assortment() {
         grape: false,
     });
     const navigate = useNavigate();
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    const toggleFilter = () => {
+        setIsFilterOpen((prev) => !prev);
+    };
 
     useEffect(() => {
         const fetchWines = async () => {
@@ -89,7 +94,10 @@ export default function Assortment() {
             <section className="assortment">
                 <div className="container">
                     <div className="assortment-inner">
-                        <aside className='leftbar-assortment'>
+                        <button className="filter-toggle-btn" onClick={toggleFilter}>
+                            Фильтры
+                        </button>
+                        <aside className={`leftbar-assortment ${isFilterOpen ? "open" : ""}`}>
 
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>

@@ -291,6 +291,29 @@ app.put('/api/basket/:id', authenticateToken, async (req, res) => {
   }
 });
 
+app.get('/api/wines/search', async (req, res) => {
+  try {
+    const { q } = req.query;
+    const searchQuery = `%${q}%`;
+
+    const { rows } = await pool.query(`
+      SELECT id, wine_name, wine_image_path 
+      FROM wine_assortment 
+      WHERE LOWER(wine_name) LIKE LOWER($1) 
+        OR LOWER(color) LIKE LOWER($1) 
+        OR LOWER(sweetness) LIKE LOWER($1) 
+        OR LOWER(region) LIKE LOWER($1)
+        OR LOWER(country_manufacturer) LIKE LOWER($1)
+        OR LOWER(grape_varieties) LIKE LOWER($1)
+    `, [searchQuery]);
+
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Search failed' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server starting on port ${PORT}`);
 });

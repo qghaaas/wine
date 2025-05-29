@@ -85,13 +85,114 @@
     font-size: 11px;
     width: 30%;
     height: 3.6vh;
-    
 }
 
-.social-link{
+.social-link {
     width: 24%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+@media (max-width: 1200px) {
+    .newsletter-offers {
+        height: 35vh;
+    }
+
+    .newsletter-form {
+        font-size: 9px;
+        margin-bottom: 29px;
+    }
+
+    .newsletter-form button {
+        width: 35%;
+    }
+
+    .social-link {
+        width: 30%;
+    }
+
+    .newsletter-form>legend {
+        line-height: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    .newsletter-form label {
+        font-size: 9px;
+        letter-spacing: 3px;
+        opacity: 50%;
+        margin-bottom: 6px;
+    }
+
+    .newsletter-form input {
+        height: 3vh;
+        margin-bottom: 18px;
+    }
+
+    .newsletter-offers-text {
+        padding: 20px 0 20px 45px;
+    }
+
+    .newsletter-form button {
+        font-size: 9px;
+        width: 26%;
+        height: 3vh;
+    }
+
+    .social-link {
+        width: 18%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .newsletter-offers {
+        height: 20vh;
+    }
+
+    .newsletter-form {
+        font-size: 6px;
+        margin-bottom: 20px;
+    }
+
+    .social-link {
+        width: 30%;
+    }
+
+    .social-link img{
+        width: 80%;
+    }
+
+    .newsletter-form>legend {
+        line-height: 0px;
+        margin-bottom: 10px;
+    }
+
+    .newsletter-form label {
+        font-size: 6px;
+        letter-spacing: 2px;
+        opacity: 50%;
+        margin-bottom: 0px;
+    }
+
+    .newsletter-form input {
+        height: 2vh;
+        margin-bottom: 10px;
+    }
+
+    .newsletter-offers-text {
+        padding: 16px 0 16px 45px;
+    }
+
+    .newsletter-form button {
+        font-size: 6px;
+        width: 20%;
+        height: 2vh;
+    }
+
+    .social-link {
+        width: 16%;
+    }
+}
+
+@media (max-width: 767px) {}

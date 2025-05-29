@@ -6,10 +6,9 @@
 
 .consultation-inner {
     width: 100%;
-
 }
 
-.consultation-offers{
+.consultation-offers {
     width: 98%;
     display: flex;
     justify-content: center;
@@ -19,13 +18,13 @@
     margin-right: 1%;
 }
 
-.consultation-offers>img{
+.consultation-offers>img {
     clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
     width: 42%;
     margin-right: auto;
 }
 
-.consultation-offers-text{
+.consultation-offers-text {
     width: 65%;
     display: flex;
     align-items: center;
@@ -64,23 +63,124 @@
     text-transform: uppercase;
 }
 
-.consultation-main-text{
-  padding-top: 50px;
-  display: flex;
-  font-family: "Inter", sans-serif;
-  font-weight: 100;
-  font-size: 12px;
-  line-height: 25px;
-  justify-content: space-between;
-  margin: 0 80px 0 45px;
-  margin-bottom: 50px;
+.consultation-main-text {
+    padding-top: 50px;
+    display: flex;
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 25px;
+    justify-content: space-between;
+    margin: 0 80px 0 45px;
+    margin-bottom: 50px;
 }
 
-.consultation-main-text>p{
+.consultation-main-text>p {
     width: 40%;
 }
 
-.consultation-see-all{
+.consultation-see-all {
     margin-left: 45px;
     padding-bottom: 125px;
+}
+
+@media(max-width: 1200px) {
+    .consultation-offers {
+        height: 25vh;
+    }
+
+    .consultation-offers-text h2 {
+        font-size: 28px;
+        margin-bottom: 2px;
+    }
+
+    .consultation-offers-text p {
+        font-size: 18px;
+        margin-bottom: 23px;
+    }
+
+    .consultation-offers-text a {
+        font-size: 8px;
+    }
+
+    .consultation-main-text {
+        padding-top: 30px;
+        font-size: 9px;
+        line-height: 20px;
+        margin: 0 80px 0 45px;
+        margin-bottom: 40px;
+    }
+
+    .consultation-see-all {
+        padding-bottom: 100px;
+    }
+}
+
+@media(max-width: 1024px) {
+    .consultation-offers {
+        height: 20vh;
+    }
+
+    .consultation-offers-text h2 {
+        font-size: 18px;
+    }
+
+    .consultation-offers-text p {
+        font-size: 10px;
+        margin-bottom: 18px;
+    }
+
+    .consultation-offers-text a {
+        font-size: 6px;
+        letter-spacing: 4px;
+    }
+
+    .consultation-main-text {
+        padding-top: 20px;
+        font-size: 6px;
+        line-height: 14px;
+        margin: 0 80px 0 45px;
+        margin-bottom: 30px;
+    }
+
+    .consultation-see-all {
+        padding-bottom: 70px;
+    }
+}
+
+@media(max-width: 767px) {
+    .consultation-offers {
+        height: 18vh;
+    }
+
+    .consultation-offers-text h2 {
+        font-size: 10px;
+    }
+
+    .consultation-offers-text p {
+        font-size: 6px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+
+    .consultation-offers-text a {
+        font-size: 4px;
+        letter-spacing: 2px;
+    }
+
+    .consultation-main-text {
+        padding-top: 10px;
+        font-size: 4px;
+        line-height: 8px;
+        margin: 0 80px 0 45px;
+        margin-bottom: 10px;
+    }
+
+    .consultation-see-all {
+        padding-bottom: 50px;
+    }
+
+    .consultation-see-all p{
+        font-size: 4px;
+    }
 }

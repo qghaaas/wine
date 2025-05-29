@@ -39,14 +39,12 @@
     margin-right: 37px;
 }
 
-.logo img{
+.logo img {
     width: 100%;
 }
 
 .header-search {
-    height: max-content;
     display: flex;
- 
     justify-content: center;
     flex: 3;
     margin-right: 39px;
@@ -56,6 +54,9 @@
     flex: 3;
     align-self: stretch;
     height: 3.6vh;
+    border: none;
+    padding: 0 3%;
+    font-family: "Inter", sans-serif;
 }
 
 .header-search button {
@@ -67,7 +68,7 @@
     align-items: center;
 }
 
-.header-search img{
+.header-search img {
     width: 40%;
 }
 
@@ -109,13 +110,13 @@
     width: 1px;
     background-color: #414040;
 }
-  
+
 .geolocation::before {
-    left: -30px; 
+    left: -30px;
 }
-  
+
 .geolocation::after {
-    right: -30px; 
+    right: -30px;
 }
 
 .basket {
@@ -148,7 +149,225 @@
     cursor: pointer;
 }
 
-.burger-button img {
-    width: 20px;
-    height: 20px;
+.mobile-menu-content {
+    display: none;
+}
+
+.basketIcon {
+    display: none;
+}
+
+.header-search {
+    position: relative;
+    width: 300px;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-dropdown li {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    color: #000;
+    border-top: 1px solid #0A0A0A;
+}
+
+.search-dropdown li img {
+    margin-right: 10px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.search-dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+
+@media (max-width: 1200px) {
+    .header-top {
+        padding: 10px 45px;
+    }
+
+    .logo {
+        margin: 0;
+    }
+
+    .logo>img {
+        width: 70%;
+    }
+
+    .header-inner>h2 {
+        font-size: 5px;
+    }
+
+    .header-search {
+        flex: 2;
+    }
+
+    .header-search input {
+        height: 2.2vh;
+    }
+
+    .header-search button {
+        width: 10%;
+    }
+
+    .header-search img {
+        width: 25%;
+    }
+
+    .authentication>div,
+    .geolocation>div,
+    .basket>div {
+        font-size: 6px;
+    }
+
+    .authentication>a,
+    .geolocation>p,
+    .basket>p {
+        font-size: 9px;
+    }
+
+    .header-bot-item {
+        font-size: 9px;
+        gap: 0 20px;
+    }
+
+    .header-bot {
+        height: fit-content;
+    }
+}
+
+@media (max-width: 767px) {
+    .header-inner h2 {
+        font-size: 4px;
+        letter-spacing: 2px;
+        padding: 5px 15px;
+    }
+
+    .header-top {
+        padding: 5px 10px;
+        position: relative;
+    }
+
+    .nav-right .authentication,
+    .nav-right .geolocation {
+        display: none;
+    }
+
+    .burger-button {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    .header-bot {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        left: auto;
+        width: fit-content;
+        height: fit-content;
+        background: #0A0A0A;
+        transition: right 0.3s;
+        z-index: 1000;
+        padding: 70px 20px 20px;
+    }
+
+    .header-bot.open {
+        right: 0;
+        left: auto;
+
+    }
+
+    .mobile-menu-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+
+    .mobile-auth {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: #fff;
+    }
+
+    .mobile-auth a,
+    .mobile-auth button {
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .mobile-geo div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+    }
+
+    .mobile-geo img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header-bot-item {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+    }
+
+    .header-bot-item li {
+        font-size: 14px;
+    }
+
+    .nav-right {
+        flex: 0.2;
+    }
+
+    .basket>div {
+        display: none;
+    }
+
+    .basket p {
+        display: none;
+    }
+
+    .basketIcon {
+        display: block;
+    }
+
+    .header-search input {
+        height: 3vh;
+    }
+
+    .header-search button {
+        width: 6%;
+    }
+
+    .header-search {
+        margin: 0;
+        flex: 0.5;
+    }
+
+    .logo {
+        flex: 0.2;
+    }
 }
