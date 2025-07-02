@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import arrowShow from '../../Home/Assortment/img/arrowShow.svg'
 import sortproductArr from '../../Home/Assortment/img/sortproductArr.svg'
 import ellipse from '../../Home/Assortment/img/ellipse.svg'
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function Assortment() {
     const [wines, setWines] = useState([]);
+    const [filteredWines, setFilteredWines] = useState([]);
     const [loading, setLoading] = useState(true);
     const [openForms, setOpenForms] = useState({
         color: true,
@@ -19,7 +20,21 @@ export default function Assortment() {
         classification: false,
         grape: false,
     });
+    const [filters, setFilters] = useState({
+        color: [],
+        sweetness: [],
+        price: { min: null, max: null },
+        country: [],
+        region: [],
+        classification: [],
+        grape: [],
+    });
     const navigate = useNavigate();
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    const toggleFilter = () => {
+        setIsFilterOpen((prev) => !prev);
+    };
 
     useEffect(() => {
         const fetchWines = async () => {
@@ -27,6 +42,7 @@ export default function Assortment() {
                 const response = await fetch('http://localhost:3010/api/wines');
                 const data = await response.json();
                 setWines(data);
+                setFilteredWines(data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching wines:', error);
@@ -37,6 +53,31 @@ export default function Assortment() {
         fetchWines();
     }, []);
 
+    useEffect(() => {
+        applyFilters();
+    }, [filters, wines]);
+
+    const applyFilters = () => {
+        let result = [...wines];
+
+        if (filters.color.length > 0) {
+            result = result.filter(wine => filters.color.includes(wine.color));
+        }
+
+        if (filters.sweetness.length > 0) {
+            result = result.filter(wine => filters.sweetness.includes(wine.sweetness));
+        }
+
+        if (filters.price.min !== null) {
+            result = result.filter(wine => wine.price >= filters.price.min);
+        }
+        if (filters.price.max !== null) {
+            result = result.filter(wine => wine.price <= filters.price.max);
+        }
+
+        setFilteredWines(result);
+    };
+
     const toggleForm = (formName) => {
         setOpenForms(prev => ({
             ...prev,
@@ -44,12 +85,44 @@ export default function Assortment() {
         }));
     };
 
+    const handleFilterChange = (category, value) => {
+        setFilters(prev => {
+            const newFilters = { ...prev };
+            if (newFilters[category].includes(value)) {
+                newFilters[category] = newFilters[category].filter(item => item !== value);
+            } else {
+                newFilters[category] = [...newFilters[category], value];
+            }
+            return newFilters;
+        });
+    };
+
+    const handlePriceFilter = (min, max) => {
+        setFilters(prev => ({
+            ...prev,
+            price: {
+                min: min ? Number(min) : null,
+                max: max ? Number(max) : null
+            }
+        }));
+    };
+
+    const countByCategory = (category) => {
+        return wines.reduce((acc, wine) => {
+            const value = wine[category];
+            acc[value] = (acc[value] || 0) + 1;
+            return acc;
+        }, {});
+    };
+
+    const colorCounts = countByCategory('color');
+    const sweetnessCounts = countByCategory('sweetness');
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     useEffect(() => {
         const token = localStorage.getItem('token');
         setIsAuthenticated(!!token);
     }, []);
-
 
     const handleAddToBasket = async (product_id) => {
         if (!isAuthenticated) {
@@ -83,12 +156,13 @@ export default function Assortment() {
     };
 
     if (loading) return <div>Loading...</div>;
+
     return (
         <>
             <section className="assortment">
                 <div className="container">
                     <div className="assortment-inner Wine-assortment-inner">
-                        <aside className='leftbar-assortment'>
+                        <aside className={`leftbar-assortment ${isFilterOpen ? "open" : ""}`}>
                             <h2 className='aside-title'>Red Wine</h2>
                             <form action="" className={`assortment-form ${openForms.color ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
@@ -104,36 +178,56 @@ export default function Assortment() {
                                 {openForms.color && (
                                     <>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='white' />
+                                            <input
+                                                type="checkbox"
+                                                id='white'
+                                                checked={filters.color.includes('Белое')}
+                                                onChange={() => handleFilterChange('color', 'Белое')}
+                                            />
                                             <label htmlFor="white">
                                                 <div className="checkbox-box"></div>
                                                 Белое
                                             </label>
-                                            <span>33</span>
+                                            <span>{colorCounts['Белое'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="red" />
+                                            <input
+                                                type="checkbox"
+                                                id="red"
+                                                checked={filters.color.includes('Красное')}
+                                                onChange={() => handleFilterChange('color', 'Красное')}
+                                            />
                                             <label htmlFor="red">
                                                 <div className="checkbox-box"></div>
                                                 Красное
                                             </label>
-                                            <span>3</span>
+                                            <span>{colorCounts['Красное'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="pink" />
+                                            <input
+                                                type="checkbox"
+                                                id="pink"
+                                                checked={filters.color.includes('Розовое')}
+                                                onChange={() => handleFilterChange('color', 'Розовое')}
+                                            />
                                             <label htmlFor="pink">
                                                 Розовое
                                                 <div className="checkbox-box"></div>
                                             </label>
-                                            <span>3</span>
+                                            <span>{colorCounts['Розовое'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id="other" />
+                                            <input
+                                                type="checkbox"
+                                                id="other"
+                                                checked={filters.color.includes('Прочее')}
+                                                onChange={() => handleFilterChange('color', 'Прочее')}
+                                            />
                                             <label htmlFor="other">
                                                 Прочее
                                                 <div className="checkbox-box"></div>
                                             </label>
-                                            <span>3</span>
+                                            <span>{colorCounts['Прочее'] || 0}</span>
                                         </div>
                                     </>
                                 )}
@@ -153,65 +247,100 @@ export default function Assortment() {
                                 {openForms.sweetness && (
                                     <>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Brut' />
+                                            <input
+                                                type="checkbox"
+                                                id='Brut'
+                                                checked={filters.sweetness.includes('Брют')}
+                                                onChange={() => handleFilterChange('sweetness', 'Брют')}
+                                            />
                                             <label htmlFor="Brut">
                                                 <div className="checkbox-box"></div>
                                                 Брют
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Брют'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Dessert' />
+                                            <input
+                                                type="checkbox"
+                                                id='Dessert'
+                                                checked={filters.sweetness.includes('Десертное')}
+                                                onChange={() => handleFilterChange('sweetness', 'Десертное')}
+                                            />
                                             <label htmlFor="Dessert">
                                                 <div className="checkbox-box"></div>
                                                 Десертное
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Десертное'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Mounted' />
+                                            <input
+                                                type="checkbox"
+                                                id='Mounted'
+                                                checked={filters.sweetness.includes('Крепленное')}
+                                                onChange={() => handleFilterChange('sweetness', 'Крепленное')}
+                                            />
                                             <label htmlFor="Mounted">
                                                 <div className="checkbox-box"></div>
                                                 Крепленное
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Крепленное'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Non-Dosage' />
+                                            <input
+                                                type="checkbox"
+                                                id='Non-Dosage'
+                                                checked={filters.sweetness.includes('Нон-Дозаж')}
+                                                onChange={() => handleFilterChange('sweetness', 'Нон-Дозаж')}
+                                            />
                                             <label htmlFor="Non-Dosage">
                                                 <div className="checkbox-box"></div>
                                                 Нон-Дозаж
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Нон-Дозаж'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Semi-sweet' />
+                                            <input
+                                                type="checkbox"
+                                                id='Semi-sweet'
+                                                checked={filters.sweetness.includes('Полусладкое')}
+                                                onChange={() => handleFilterChange('sweetness', 'Полусладкое')}
+                                            />
                                             <label htmlFor="Semi-sweet">
                                                 <div className="checkbox-box"></div>
                                                 Полусладкое
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Полусладкое'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Semi-dry' />
+                                            <input
+                                                type="checkbox"
+                                                id='Semi-dry'
+                                                checked={filters.sweetness.includes('Полусухое')}
+                                                onChange={() => handleFilterChange('sweetness', 'Полусухое')}
+                                            />
                                             <label htmlFor="Semi-dry">
                                                 <div className="checkbox-box"></div>
                                                 Полусухое
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Полусухое'] || 0}</span>
                                         </div>
                                         <div className='assortment-form-input_item'>
-                                            <input type="checkbox" id='Dry' />
+                                            <input
+                                                type="checkbox"
+                                                id='Dry'
+                                                checked={filters.sweetness.includes('Сухое')}
+                                                onChange={() => handleFilterChange('sweetness', 'Сухое')}
+                                            />
                                             <label htmlFor="Dry">
                                                 <div className="checkbox-box"></div>
                                                 Сухое
                                             </label>
-                                            <span>3</span>
+                                            <span>{sweetnessCounts['Сухое'] || 0}</span>
                                         </div>
                                     </>
                                 )}
                             </form>
-          
+
                             <form action="" className={`assortment-form ${openForms.price ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Цена</legend>
@@ -226,13 +355,22 @@ export default function Assortment() {
                                 {openForms.price && (
                                     <div className='assortment-sort-price'>
                                         <div>
-                                            <input type="number" placeholder='от' />
-                                            <input type="number" placeholder='до' />
+                                            <input
+                                                type="number"
+                                                placeholder='от'
+                                                onChange={(e) => handlePriceFilter(e.target.value, filters.price.max)}
+                                            />
+                                            <input
+                                                type="number"
+                                                placeholder='до'
+                                                onChange={(e) => handlePriceFilter(filters.price.min, e.target.value)}
+                                            />
                                         </div>
-                                        <button><span>ОК</span></button>
+                                        <button type="button" onClick={() => applyFilters()}><span>ОК</span></button>
                                     </div>
                                 )}
                             </form>
+
 
                             <form action="" className={`assortment-form ${openForms.country ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
@@ -263,12 +401,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.region && (
                                     <div>
-                                 
+
                                     </div>
                                 )}
                             </form>
 
-                         
+
                             <form action="" className={`assortment-form ${openForms.classification ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Классификация</legend>
@@ -281,12 +419,12 @@ export default function Assortment() {
                                 </div>
                                 {openForms.classification && (
                                     <div>
-                                   
+
                                     </div>
                                 )}
                             </form>
 
-                         
+
                             <form action="" className={`assortment-form ${openForms.grape ? 'open' : ''}`}>
                                 <div className='assortment-form-title'>
                                     <legend>Сорт Винограда</legend>
@@ -299,7 +437,7 @@ export default function Assortment() {
                                 </div>
                                 {openForms.grape && (
                                     <div>
-                                       
+
                                     </div>
                                 )}
                             </form>
@@ -337,40 +475,66 @@ export default function Assortment() {
 
 
 
-                            <div className='product-card-container'>
-                                {wines.map((wine) => {
-                                    const [year, volume] = wine.wine_year_volume.split('/');
-                                    const [country, manufacturer] = wine.country_manufacturer.split('/');
+                            {filteredWines.length > 0 ? (
+                                <>
+                                    <div className='product-card-container'>
+                                        {filteredWines.map((wine) => {
+                                            const [year, volume] = wine.wine_year_volume.split('/');
+                                            const [country, manufacturer] = wine.country_manufacturer.split('/');
 
-                                    return (
-                                        <div className='product-card' key={wine.id}>
-                                            <Link to={`/Product-Wine/${wine.id}`}>
-                                                <div className='product-card-top'>
-                                                    <img src={wine.wine_image_path || product} alt={wine.wine_name} />
-                                                </div>
-                                            </Link>
-                                            <div className='product-card-bot'>
-                                                <h3>{wine.wine_name}</h3>
-                                                <div className='product-card-bot-info'>
-                                                    <span>{year}/{volume} л</span>
-                                                    <div className='product-card-bot-country'>
-                                                        <img src={wine.flag_image_path || flag} alt={country} />
-                                                        <p>{country}/{manufacturer}</p>
-                                                    </div>
-                                                    <div className='product-card-bot-bot'>
-                                                        <div>
-                                                            <span>ЦЕНА ЗА 1 ШТ</span>
-                                                            <p>{new Intl.NumberFormat('ru-RU').format(wine.price)} р</p>
+                                            return (
+                                                <div className='product-card' key={wine.id}>
+                                                    <Link to={`/Product-Wine/${wine.id}`}>
+                                                        <div className='product-card-top'>
+                                                            <img src={wine.wine_image_path || product} alt={wine.wine_name} />
                                                         </div>
-                                                        <button onClick={() => handleAddToBasket(wine.id)}>В КОРЗИНУ</button>
+                                                    </Link>
+                                                    <div className='product-card-bot'>
+                                                        <h3>{wine.wine_name}</h3>
+                                                        <div className='product-card-bot-info'>
+                                                            <span>{year}/{volume} л</span>
+                                                            <div className='product-card-bot-country'>
+                                                                <img src={wine.flag_image_path || flag} alt={country} />
+                                                                <p>{country}/{manufacturer}</p>
+                                                            </div>
+                                                            <div className='product-card-bot-bot'>
+                                                                <div>
+                                                                    <span>ЦЕНА ЗА 1 ШТ</span>
+                                                                    <p>{new Intl.NumberFormat('ru-RU').format(wine.price)} р</p>
+                                                                </div>
+                                                                <button onClick={() => handleAddToBasket(wine.id)}>В КОРЗИНУ</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <button className='see-all'><p>СМОТРЕТЬ ВСЕ</p> <div></div></button>
+                                            );
+                                        })}
+                                    </div>
+                                    <button className='see-all'><p>СМОТРЕТЬ ВСЕ</p> <div></div></button>
+                                </>
+                            ) : (
+                                <div className="no-products-container">
+                                    <div className="no-products-message">
+                                        <h3>Товаров по выбранным фильтрам не найдено</h3>
+                                        <p>Попробуйте изменить параметры поиска или сбросить фильтры</p>
+                                        <button
+                                            className="reset-filters-btn"
+                                            onClick={() => setFilters({
+                                                color: [],
+                                                sweetness: [],
+                                                price: { min: null, max: null },
+                                                country: [],
+                                                region: [],
+                                                classification: [],
+                                                grape: [],
+                                            })}
+                                        >
+                                            Сбросить все фильтры
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                            
                         </div>
                     </div>
                 </div>

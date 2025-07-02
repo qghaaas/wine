@@ -314,6 +314,28 @@ app.get('/api/wines/search', async (req, res) => {
   }
 });
 
+app.post('/api/admin/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === 'admin' && password === 'admin') {
+    const token = jwt.sign({ role: 'admin' }, 'your_jwt_secret', {
+      expiresIn: '1d',
+    });
+    return res.json({ token });
+  }
+
+  res.status(401).json({ message: 'Неверные учетные данные' });
+});
+
+app.get('/api/admin/users', authenticateToken, async (req, res) => {
+  try {
+    const users = await pool.query('SELECT id, first_name, last_name, email FROM wine.user');
+    res.json(users.rows);
+  } catch (err) {
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server starting on port ${PORT}`);
 });

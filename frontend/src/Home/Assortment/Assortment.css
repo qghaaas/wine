@@ -328,6 +328,40 @@
     display: none;
 }
 
+.no-products-message {
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+
+}
+
+.no-products-message h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.no-products-message p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.reset-filters-btn {
+    background-color: #7A0000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.reset-filters-btn:hover {
+    background-color: #A52A2A;
+}
+
 @media (max-width: 1200px) {
     .assortment-inner {
         font-size: 9px;

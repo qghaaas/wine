@@ -12,7 +12,8 @@ import Register from "./User/LoginRegister/Register";
 import Error404link from "./Route/Error404link";
 import ScrollToTop from "./ScrollToTop";
 import AccountSelect from "./User/Account/AccountSelect";
-
+import AdminLogin from "./Admin/AdminLogin";
+import AdminDashboard from "./Admin/AdminDashboard";
 
 export default function MainRouter() {
     return (
@@ -20,6 +21,7 @@ export default function MainRouter() {
             <HashRouter>
                 <ScrollToTop />
                 <Routes>
+
                     <Route path="/" index element={<Homelink />} />
                     <Route path="/Home" element={<Homelink />} />
                     <Route path="/Wine" element={<WinePagelink />} />
@@ -32,6 +34,8 @@ export default function MainRouter() {
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Error" element={<Error404link />} />
                     <Route path="/AccountSelect" element={<AccountSelect />} />
+                    <Route path="/admin" element={<AdminLogin />} />
+                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
                 </Routes>
             </HashRouter>

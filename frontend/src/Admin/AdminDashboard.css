@@ -1,0 +1,247 @@
+.admin-dashboard-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-dashboard-title {
+  color: #333;
+  margin: 0;
+  font-size: 24px;
+}
+
+.admin-dashboard-logout {
+  padding: 8px 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-dashboard-logout:hover {
+  background-color: #c82333;
+}
+
+.admin-dashboard-error {
+  color: #dc3545;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-users-title {
+  color: #444;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.admin-users-table th {
+  background-color: #f8f9fa;
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+}
+
+.admin-users-table td {
+  padding: 12px 15px;
+  border: 1px solid #dee2e6;
+  color: #666;
+}
+
+.admin-users-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.admin-users-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.loading-message {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin: 50px 0;
+}
+
+.admin-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-tabs button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.admin-tabs button.active {
+  border-bottom-color: #007bff;
+  font-weight: bold;
+}
+
+.product-actions {
+  margin-bottom: 20px;
+}
+
+.add-product-button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.admin-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-tabs button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.admin-tabs button.active {
+  border-bottom-color: #007bff;
+  font-weight: bold;
+}
+
+.admin-actions {
+  margin-bottom: 20px;
+}
+
+.add-button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.product-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.product-form .form-group {
+  margin-bottom: 15px;
+}
+
+.product-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.product-form .form-group input,
+.product-form .form-group select,
+.product-form .form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-actions .cancel-btn {
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions .save-btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions .save-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
