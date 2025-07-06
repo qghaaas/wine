@@ -336,6 +336,280 @@ app.get('/api/admin/users', authenticateToken, async (req, res) => {
   }
 });
 
+app.post('/api/admin/wines', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const {
+      wine_name,
+      wine_year_volume,
+      price,
+      country_manufacturer,
+      region,
+      color,
+      sweetness,
+      classification,
+      grape_varieties,
+      alcohol_content,
+      sugar_content,
+      importer,
+      rating,
+      color_taste_aroma,
+      legend,
+      vinification,
+      wine_image_path,
+      flag_image_path
+    } = req.body;
+
+    const { rows } = await pool.query(
+      `INSERT INTO wine_assortment (
+        wine_name, wine_year_volume, price, country_manufacturer, region, color, sweetness,
+        classification, grape_varieties, alcohol_content, sugar_content, importer, rating,
+        color_taste_aroma, legend, vinification, wine_image_path, flag_image_path
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING *`,
+      [
+        wine_name,
+        wine_year_volume,
+        price,
+        country_manufacturer,
+        region,
+        color,
+        sweetness,
+        classification,
+        grape_varieties,
+        alcohol_content,
+        sugar_content,
+        importer,
+        rating,
+        color_taste_aroma,
+        legend,
+        vinification,
+        wine_image_path,
+        flag_image_path
+      ]
+    );
+
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.put('/api/admin/wines/:id', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const { id } = req.params;
+    const {
+      wine_name,
+      wine_year_volume,
+      price,
+      country_manufacturer,
+      region,
+      color,
+      sweetness,
+      classification,
+      grape_varieties,
+      alcohol_content,
+      sugar_content,
+      importer,
+      rating,
+      color_taste_aroma,
+      legend,
+      vinification,
+      wine_image_path,
+      flag_image_path
+    } = req.body;
+
+    const { rows } = await pool.query(
+      `UPDATE wine_assortment SET
+        wine_name = $1, wine_year_volume = $2, price = $3, country_manufacturer = $4, region = $5,
+        color = $6, sweetness = $7, classification = $8, grape_varieties = $9, alcohol_content = $10,
+        sugar_content = $11, importer = $12, rating = $13, color_taste_aroma = $14, legend = $15,
+        vinification = $16, wine_image_path = $17, flag_image_path = $18, updated_at = CURRENT_TIMESTAMP
+      WHERE id = $19 RETURNING *`,
+      [
+        wine_name,
+        wine_year_volume,
+        price,
+        country_manufacturer,
+        region,
+        color,
+        sweetness,
+        classification,
+        grape_varieties,
+        alcohol_content,
+        sugar_content,
+        importer,
+        rating,
+        color_taste_aroma,
+        legend,
+        vinification,
+        wine_image_path,
+        flag_image_path,
+        id
+      ]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Wine not found' });
+    }
+
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.delete('/api/admin/wines/:id', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const { id } = req.params;
+    const { rows } = await pool.query('DELETE FROM wine_assortment WHERE id = $1 RETURNING *', [id]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Wine not found' });
+    }
+
+    res.json({ message: 'Wine deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/admin/whiskey', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const {
+      whiskey_name,
+      whiskey_year_volume,
+      price,
+      country_manufacturer,
+      region,
+      classification,
+      whiskey_image_path,
+      flag_image_path
+    } = req.body;
+
+    const { rows } = await pool.query(
+      `INSERT INTO whiskey_assortment (
+        whiskey_name, whiskey_year_volume, price, country_manufacturer, region,
+        classification, whiskey_image_path, flag_image_path
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+      [
+        whiskey_name,
+        whiskey_year_volume,
+        price,
+        country_manufacturer,
+        region,
+        classification,
+        whiskey_image_path,
+        flag_image_path
+      ]
+    );
+
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.put('/api/admin/whiskey/:id', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const { id } = req.params;
+    const {
+      whiskey_name,
+      whiskey_year_volume,
+      price,
+      country_manufacturer,
+      region,
+      classification,
+      whiskey_image_path,
+      flag_image_path
+    } = req.body;
+
+    const { rows } = await pool.query(
+      `UPDATE whiskey_assortment SET
+        whiskey_name = $1, whiskey_year_volume = $2, price = $3, country_manufacturer = $4,
+        region = $5, classification = $6, whiskey_image_path = $7, flag_image_path = $8,
+        updated_at = CURRENT_TIMESTAMP
+      WHERE id = $9 RETURNING *`,
+      [
+        whiskey_name,
+        whiskey_year_volume,
+        price,
+        country_manufacturer,
+        region,
+        classification,
+        whiskey_image_path,
+        flag_image_path,
+        id
+      ]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Whiskey not found' });
+    }
+
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.delete('/api/admin/whiskey/:id', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+    const { id } = req.params;
+    const { rows } = await pool.query('DELETE FROM whiskey_assortment WHERE id = $1 RETURNING *', [id]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Whiskey not found' });
+    }
+
+    res.json({ message: 'Whiskey deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/api/wine-colors', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT DISTINCT color FROM wine.wine_assortment ORDER BY color');
+    res.json(rows.map(row => row.color));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/api/wine-sweetness-levels', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT DISTINCT sweetness FROM wine.wine_assortment ORDER BY sweetness');
+    res.json(rows.map(row => row.sweetness));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server starting on port ${PORT}`);
 });

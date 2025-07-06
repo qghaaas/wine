@@ -280,6 +280,11 @@
     margin-bottom: 6px;
 }
 
+.product-card-bot-country img{
+    width: 14px;
+    height: 6px;
+}
+
 .product-card-bot-bot {
     font-weight: 700;
     display: flex;
